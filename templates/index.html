@@ -1,0 +1,448 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Quick Stats Overview -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-value" id="totalToday">₹0</div>
+        <div>Today's Spending</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value" id="totalExpenses">₹0</div>
+        <div>Total Balance</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value" id="syncedCount">0</div>
+        <div>Transactions Synced</div>
+    </div>
+</div>
+
+<!-- ====== BUDGET PREDICTION SECTION ====== -->
+<div class="glass-card">
+    <h2 class="section-header">📊 Budget Intelligence</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+        <!-- This Month Card -->
+        <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(102, 126, 234, 0.1) 100%); border: 2px solid rgba(102, 126, 234, 0.3); padding: 24px; border-radius: 16px; backdrop-filter: blur(10px);">
+            <div style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.7); margin-bottom: 16px;">📅 This Month</div>
+            <div id="currentMonthName" style="font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 12px;">Calculating...</div>
+            <div style="font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 8px;">Spent So Far</div>
+            <div id="currentSpent" style="font-size: 32px; font-weight: 800; color: #667eea; margin-bottom: 16px;">₹0</div>
+            <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 12px;">Projected Total</div>
+            <div id="currentProjected" style="font-size: 24px; font-weight: 700; color: #fff;">₹0</div>
+            <div id="currentProgress" style="width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; margin-top: 12px; overflow: hidden;">
+                <div id="currentProgressBar" style="height: 100%; background: #667eea; width: 0%; transition: width 0.3s;"></div>
+            </div>
+        </div>
+        
+        <!-- Next Month Card -->
+        <div style="background: linear-gradient(135deg, rgba(76, 192, 192, 0.2) 0%, rgba(76, 192, 192, 0.1) 100%); border: 2px solid rgba(76, 192, 192, 0.3); padding: 24px; border-radius: 16px; backdrop-filter: blur(10px);">
+            <div style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.7); margin-bottom: 16px;">🔮 Next Month (Predicted)</div>
+            <div id="nextMonthName" style="font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 12px;">Calculating...</div>
+            <div style="font-size: 14px; color: rgba(255,255,255,0.8); margin-bottom: 8px;">ML Prediction</div>
+            <div id="nextMonthTotal" style="font-size: 32px; font-weight: 800; color: #4BC0C0; margin-bottom: 16px;">₹0</div>
+            <div id="trendIndicator" style="font-size: 12px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; color: #fff;">⏳ Analyzing...</div>
+        </div>
+    </div>
+    
+    <!-- Budget by Category Comparison -->
+    <div id="categoryComparison" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;"></div>
+</div>
+
+<!-- ====== EXPENSE INPUT SECTION ====== -->
+<div class="glass-card">
+    <h2 class="section-header">➕ Quick Add Expense</h2>
+    <form method="POST" action="/add" class="expense-form">
+        <div class="input-group">
+            <input type="text" id="description" name="description" placeholder="What did you spend on?" required>
+            <small id="suggestText" style="display:block;margin-top:6px;font-size:12px;color:#4CAF50;"></small>
+        </div>
+        <div class="input-group">
+            <input type="number" name="amount" placeholder="Amount" step="0.01" required>
+        </div>
+        <div class="input-group">
+            <select name="category" id="category" required>
+                <option value="">Select Category</option>
+                <option value="food">🍔 Food</option>
+                <option value="transport">🚗 Transport</option>
+                <option value="shopping">🛒 Shopping</option>
+                <option value="entertainment">🎬 Entertainment</option>
+                <option value="bills">💡 Bills</option>
+                <option value="other">📋 Other</option>
+            </select>
+        </div>
+        <button type="submit" class="btn-primary">✨ Add</button>
+    </form>
+</div>
+
+<!-- ====== ADVANCED INPUT SECTION ====== -->
+<div class="glass-card">
+    <h2 class="section-header">📸 Smart Receipt Scanner</h2>
+    <form id="receiptForm" method="POST" action="/api/upload-receipt" enctype="multipart/form-data">
+        <div style="display: grid; grid-template-columns: 1fr 120px 120px; gap: 15px; align-items: flex-start;">
+            <div class="input-group">
+                <input type="file" name="receipt" accept="image/*" placeholder="Upload receipt image...">
+            </div>
+            <div class="input-group">
+                <select name="save" style="height: 100%; padding: 13px 16px;">
+                    <option value="true" selected>Save: Yes</option>
+                    <option value="false">Save: No</option>
+                </select>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; margin-top: 0; padding: 13px;">📥 Scan</button>
+        </div>
+    </form>
+    <div id="receiptResult" style="margin-top:12px;font-size:13px;display:none;padding:16px;background:var(--input-bg);border-radius:12px;"></div>
+</div>
+
+<!-- ====== PAYMENT APP INTEGRATION ====== -->
+<div class="payment-section">
+    <div class="payment-subsection">
+        <div class="subsection-title">🏦 Connected Payment Accounts</div>
+        <div id="primaryBank" style="margin-bottom:15px;"></div>
+        <div id="paymentAccounts" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;"></div>
+        <button onclick="refreshPaymentBalance()" class="btn-secondary" style="margin-top: 15px;">🔄 Refresh Balances</button>
+    </div>
+
+    <div class="payment-subsection">
+        <div class="subsection-title">⚡ Auto-Sync Transactions</div>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">
+            Automatically import your latest transactions from payment apps
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 15px;">
+            <button onclick="autoSyncFromApp('UPI')" class="btn-secondary">🔗 UPI</button>
+            <button onclick="autoSyncFromApp('Bank')" class="btn-secondary">🏦 Bank</button>
+            <button onclick="autoSyncFromApp('Card')" class="btn-secondary">💳 Card</button>
+            <button onclick="autoSyncAll()" class="btn-secondary" style="background: var(--primary-gradient); color: white; border: none;">🔄 All</button>
+        </div>
+        <div id="syncStatus" style="font-size: 12px; padding: 10px; background: var(--input-bg); border-radius: 8px; display: none; color: var(--text-secondary);"></div>
+    </div>
+
+    <div class="payment-subsection">
+        <div class="subsection-title">📊 Recent Transactions</div>
+        <div id="syncedTransactions" style="max-height: 350px; overflow-y: auto;"></div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+    // Load payment accounts and synced transactions
+    await loadPaymentAccounts();
+    await loadSyncedTransactions();
+    await loadTodaySpending();
+    await loadBudgetMonths();
+    
+    // AI Category Prediction
+    const descInput = document.getElementById('description');
+    const categorySelect = document.getElementById('category');
+    const suggestText = document.getElementById('suggestText');
+    
+    if (descInput && categorySelect && suggestText) {
+        descInput.addEventListener('input', async function() {
+            const desc = this.value.trim();
+            
+            if (desc.length > 2) {
+                try {
+                    const res = await fetch('/api/suggest-category', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({description: desc})
+                    });
+                    
+                    if (res.ok) {
+                        const data = await res.json();
+                        categorySelect.value = data.category || 'food';
+                        suggestText.textContent = `🤖 AI suggests: ${data.category.toUpperCase()}`;
+                    }
+                } catch(e) {
+                    console.error("AI Error:", e);
+                }
+            } else {
+                suggestText.textContent = '';
+            }
+        });
+    }
+});
+
+async function loadPaymentAccounts() {
+    try {
+        const res = await fetch('/api/payment-balance');
+        const data = await res.json();
+        
+        const bank = data.primary || null;
+        const channels = data.channels || [];
+
+        let primaryHtml = '';
+        if (bank) {
+            primaryHtml = `
+                <div style="background: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 100%); padding: 20px; border-radius: 14px; border-left: 5px solid #667eea;">
+                    <div style="font-weight: 700; color: #1f2937; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom:8px;">🏦 Primary Bank</div>
+                    <div style="font-size: 32px; font-weight: 800; color: #1f2937;">₹${parseInt(bank.balance).toLocaleString('en-IN')}</div>
+                    <div style="font-size: 12px; color: #6b7280; margin-top: 8px;">${bank.identifier}</div>
+                </div>
+            `;
+        }
+        document.getElementById('primaryBank').innerHTML = primaryHtml;
+
+        let html = '';
+        for (const acc of channels) {
+            html += `
+                <div style="background: var(--card-bg); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color);">
+                    <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 6px; font-size: 13px;">${acc.type}</div>
+                    <div style="font-size: 12px; color: var(--text-secondary);">${acc.identifier}</div>
+                </div>
+            `;
+        }
+        document.getElementById('paymentAccounts').innerHTML = html;
+        document.getElementById('totalExpenses').textContent = '₹' + parseInt(data.total_balance).toLocaleString('en-IN');
+    } catch(e) {
+        console.error('Error loading accounts:', e);
+    }
+}
+
+async function refreshPaymentBalance() {
+    await loadPaymentAccounts();
+}
+
+async function loadTodaySpending() {
+    try {
+        const res = await fetch('/api/get-synced-transactions');
+        const transactions = await res.json();
+        
+        // Filter transactions for today
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        let todayTotal = 0;
+        if (Array.isArray(transactions)) {
+            for (const tx of transactions) {
+                const txDate = new Date(tx.timestamp);
+                txDate.setHours(0, 0, 0, 0);
+                
+                if (txDate.getTime() === today.getTime() && tx.type === 'DEBIT') {
+                    todayTotal += tx.amount;
+                }
+            }
+        }
+        
+        document.getElementById('totalToday').textContent = '₹' + todayTotal.toLocaleString('en-IN');
+    } catch(e) {
+        console.error('Error loading today spending:', e);
+    }
+}
+
+async function loadBudgetMonths() {
+    try {
+        const res = await fetch('/api/budget-months');
+        const data = await res.json();
+        
+        if (data.error) {
+            console.error('Budget error:', data.error);
+            return;
+        }
+        
+        // Update current month card
+        document.getElementById('currentMonthName').textContent = data.current_month.name;
+        document.getElementById('currentSpent').textContent = '₹' + data.current_month.spent_so_far.toLocaleString('en-IN');
+        document.getElementById('currentProjected').textContent = '₹' + data.current_month.projected_total.toLocaleString('en-IN');
+        
+        // Update progress bar
+        const progress = (data.current_month.days_elapsed / data.current_month.total_days) * 100;
+        document.getElementById('currentProgressBar').style.width = progress + '%';
+        
+        // Update next month card
+        document.getElementById('nextMonthName').textContent = data.next_month.name;
+        document.getElementById('nextMonthTotal').textContent = '₹' + data.next_month.predicted_total.toLocaleString('en-IN');
+        
+        // Update trend indicator
+        const trend = data.trend;
+        let trendColor = '#fbbf24';  // yellow
+        let trendEmoji = '➡️';
+        if (trend.direction === 'increasing') {
+            trendColor = '#ef4444';  // red
+            trendEmoji = '📈';
+        } else if (trend.direction === 'decreasing') {
+            trendColor = '#10b981';  // green
+            trendEmoji = '📉';
+        }
+        
+        document.getElementById('trendIndicator').innerHTML = `
+            <div style="color: ${trendColor}; font-weight: 700;">${trendEmoji} ${trend.message}</div>
+        `;
+        
+        // Build category comparison
+        let comparisonHtml = '';
+        const allCategories = new Set([
+            ...Object.keys(data.current_month.by_category),
+            ...Object.keys(data.next_month.by_category)
+        ]);
+        
+        const categoryEmojis = {
+            'food': '🍔', 'transport': '🚗', 'shopping': '🛒', 
+            'entertainment': '🎬', 'bills': '💡', 'technology': '🖥️', 'other': '📋'
+        };
+        
+        for (const cat of Array.from(allCategories).sort()) {
+            const current = data.current_month.by_category[cat] || 0;
+            const projected = data.current_month.projected_total > 0 ? 
+                (current / data.current_month.projected_total * 100) : 0;
+            const next = data.next_month.by_category[cat] || 0;
+            const nextPercent = data.next_month.predicted_total > 0 ? 
+                (next / data.next_month.predicted_total * 100) : 0;
+            
+            const change = next - current;
+            const changePercent = current > 0 ? ((change / current) * 100) : 0;
+            const changeEmoji = change > 0 ? '📈' : change < 0 ? '📉' : '➡️';
+            const changeColor = change > 0 ? '#ef4444' : change < 0 ? '#10b981' : '#6b7280';
+            
+            comparisonHtml += `
+                <div style="background: var(--card-bg); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color);">
+                    <div style="font-weight: 700; margin-bottom: 12px; color: var(--text-primary);">
+                        ${categoryEmojis[cat] || '📋'} ${cat.charAt(0).toUpperCase() + cat.slice(1)}
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">This Month</div>
+                    <div style="font-weight: 700; font-size: 14px; margin-bottom: 12px; color: #667eea;">₹${current.toLocaleString('en-IN')}</div>
+                    <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 6px;">Next Month (Pred.)</div>
+                    <div style="font-weight: 700; font-size: 14px; color: #4BC0C0;">₹${next.toLocaleString('en-IN')}</div>
+                    <div style="font-size: 11px; color: ${changeColor}; margin-top: 8px; font-weight: 600;">
+                        ${changeEmoji} ${changePercent > 0 ? '+' : ''}${changePercent.toFixed(0)}%
+                    </div>
+                </div>
+            `;
+        }
+        
+        document.getElementById('categoryComparison').innerHTML = comparisonHtml;
+        
+    } catch(e) {
+        console.error('Error loading budget months:', e);
+    }
+}
+
+async function refreshPaymentBalance() {
+    await loadPaymentAccounts();
+}
+
+async function autoSyncFromApp(accountType) {
+    const statusDiv = document.getElementById('syncStatus');
+    statusDiv.style.display = 'block';
+    statusDiv.innerHTML = `⏳ Syncing from ${accountType}...`;
+    
+    try {
+        const res = await fetch('/api/fetch-payment-transactions', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({account_type: accountType, limit: 10})
+        });
+        const data = await res.json();
+        
+        if (data.status === 'success') {
+            statusDiv.innerHTML = `✅ ${data.transactions.length} transactions synced from ${accountType}`;
+            await loadSyncedTransactions();
+            await loadPaymentAccounts();
+            await loadTodaySpending();
+            await loadBudgetMonths();
+        } else {
+            statusDiv.innerHTML = `❌ ${data.error || 'Sync failed'}`;
+        }
+    } catch(err) {
+        statusDiv.innerHTML = `❌ ${err.message}`;
+    }
+}
+
+async function autoSyncAll() {
+    const statusDiv = document.getElementById('syncStatus');
+    statusDiv.style.display = 'block';
+    statusDiv.innerHTML = `⏳ Syncing all accounts...`;
+    
+    try {
+        let totalSynced = 0;
+        for (const type of ['Bank', 'UPI', 'Card']) {
+            const res = await fetch('/api/fetch-payment-transactions', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({account_type: type, limit: 5})
+            });
+            const data = await res.json();
+            if (data.status === 'success') totalSynced += data.transactions.length;
+        }
+        
+        statusDiv.innerHTML = `✅ Synced ${totalSynced} transactions from all accounts`;
+        await loadSyncedTransactions();
+        await loadPaymentAccounts();
+        await loadTodaySpending();
+        await loadBudgetMonths();
+    } catch(err) {
+        statusDiv.innerHTML = `❌ ${err.message}`;
+    }
+}
+
+async function loadSyncedTransactions() {
+    try {
+        const res = await fetch('/api/get-synced-transactions');
+        const transactions = await res.json();
+        
+        let html = '';
+        if (!transactions || transactions.length === 0) {
+            html = '<div style="padding: 20px; text-align: center; color: var(--text-secondary); font-size: 13px;">No synced transactions yet</div>';
+        } else {
+            for (const tx of transactions.slice(0, 8)) {
+                const isIncome = tx.type === 'CREDIT';
+                const sign = isIncome ? '+' : '-';
+                const color = isIncome ? '#10b981' : '#ef4444';
+                html += `
+                    <div style="padding: 12px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                        <div style="flex: 1;">
+                            <div style="font-weight: 600; font-size: 13px; color: var(--text-primary);">${tx.description}</div>
+                            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 4px;">${new Date(tx.timestamp).toLocaleDateString()}</div>
+                        </div>
+                        <div style="font-weight: 700; color: ${color}; text-align: right;">
+                            ${sign}₹${Math.abs(tx.amount).toLocaleString('en-IN')}
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        document.getElementById('syncedTransactions').innerHTML = html;
+        
+        const count = (transactions || []).length;
+        document.getElementById('syncedCount').textContent = count;
+    } catch(e) {
+        console.error('Error loading transactions:', e);
+    }
+}
+
+// Receipt upload handler
+document.getElementById('receiptForm')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const resultDiv = document.getElementById('receiptResult');
+    resultDiv.style.display = 'block';
+    resultDiv.textContent = '⏳ Scanning receipt...';
+
+    const fd = new FormData(form);
+    try {
+        const res = await fetch(form.action, {method: 'POST', body: fd});
+        const data = await res.json();
+        if (res.ok && data.status === 'success') {
+            resultDiv.innerHTML = `<div style="font-weight:700; color: #10b981; margin-bottom: 8px;">✅ Receipt Scanned Successfully!</div>
+                <div style="margin-bottom: 8px;"><strong>Category:</strong> <span style="color: #667eea; font-weight: 600;">${data.suggested_category.toUpperCase()}</span></div>
+                <div style="margin-bottom: 12px;"><strong>Amount:</strong> <span style="font-size: 18px; font-weight: 700; color: #667eea;">₹${parseFloat(data.amount_found||0).toFixed(2)}</span></div>
+                <div style="font-size: 12px; color: var(--text-secondary); max-height: 120px; overflow-y: auto; background: var(--input-bg); padding: 10px; border-radius: 8px; white-space: pre-wrap;">${data.extracted_text.substring(0, 200)}...</div>`;
+            if (data.saved) setTimeout(()=> location.reload(), 1200);
+        } else {
+            resultDiv.innerHTML = `<div style="color:#ef4444;font-weight:700;">❌ ${data.error || 'OCR failed'}</div>`;
+        }
+    } catch(err) {
+        resultDiv.innerHTML = `<div style="color:#ef4444;font-weight:700;">❌ ${err.message}</div>`;
+    }
+});
+
+// Refresh every 30 seconds
+setInterval(async () => {
+    await loadPaymentAccounts();
+    await loadSyncedTransactions();
+    await loadTodaySpending();
+    await loadBudgetMonths();
+}, 30000);
+</script>
+
+{% endblock %}

@@ -1,0 +1,471 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ====== PREMIUM ANALYTICS HEADER STATS ====== -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 28px; border-radius: 16px; color: white; box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);">
+        <div style="font-size: 12px; opacity: 0.85; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 12px;">💰 Total Spent</div>
+        <div style="font-size: 36px; font-weight: 900; margin-bottom: 8px;" id="totalExpenses">₹0</div>
+        <div style="font-size: 11px; opacity: 0.8;">All-time spending</div>
+    </div>
+    
+    <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 28px; border-radius: 16px; color: white; box-shadow: 0 8px 32px rgba(245, 87, 108, 0.3);">
+        <div style="font-size: 12px; opacity: 0.85; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 12px;">📊 Avg Transaction</div>
+        <div style="font-size: 36px; font-weight: 900; margin-bottom: 8px;" id="avgTransaction">₹0</div>
+        <div style="font-size: 11px; opacity: 0.8;">Per transaction</div>
+    </div>
+    
+    <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); padding: 28px; border-radius: 16px; color: white; box-shadow: 0 8px 32px rgba(0, 242, 254, 0.3);">
+        <div style="font-size: 12px; opacity: 0.85; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 12px;">🔢 Transactions</div>
+        <div style="font-size: 36px; font-weight: 900; margin-bottom: 8px;" id="totalTransactions">0</div>
+        <div style="font-size: 11px; opacity: 0.8;">Total records</div>
+    </div>
+    
+    <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); padding: 28px; border-radius: 16px; color: white; box-shadow: 0 8px 32px rgba(250, 112, 154, 0.3);">
+        <div style="font-size: 12px; opacity: 0.85; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 12px;">🏆 Top Category</div>
+        <div style="font-size: 36px; font-weight: 900; margin-bottom: 8px;" id="topCategory">Food</div>
+        <div style="font-size: 11px; opacity: 0.8;">Leading category</div>
+    </div>
+</div>
+
+<!-- ====== PRIMARY ANALYTICS CARDS ====== -->
+<div class="glass-card">
+    <h2 class="section-header">📊 Visual Analytics</h2>
+    
+    <div class="chart-container">
+        <!-- Spending Distribution Pie -->
+        <div class="chart-card" style="grid-column: span 1;">
+            <h3 style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 20px;">🎯</span>
+                <span>Category Distribution</span>
+            </h3>
+            <canvas id="categoryChart"></canvas>
+            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; text-align: center; opacity: 0.8;">Shows your spending across all categories</div>
+        </div>
+        
+        <!-- Spending Trend Area Chart -->
+        <div class="chart-card" style="grid-column: span 1;">
+            <h3 style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 20px;">📈</span>
+                <span>Spending Trends</span>
+            </h3>
+            <canvas id="monthChart"></canvas>
+            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; text-align: center; opacity: 0.8;">Monthly spending evolution</div>
+        </div>
+    </div>
+</div>
+
+<!-- ====== DETAILED BREAKDOWN ====== -->
+<div class="glass-card">
+    <h2 class="section-header">💡 Deep Insights</h2>
+    
+    <div class="chart-container">
+        <!-- Top Spenders -->
+        <div class="chart-card" style="grid-column: span 1;">
+            <h3 style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 20px;">🥇</span>
+                <span>Top Spending Categories</span>
+            </h3>
+            <canvas id="topCategoriesChart"></canvas>
+            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; text-align: center; opacity: 0.8;">Your biggest expense drivers</div>
+        </div>
+    </div>
+</div>
+
+<!-- ====== PERFORMANCE METRICS ====== -->
+<div class="glass-card">
+    <h2 class="section-header">⚡ Performance Analytics</h2>
+    
+    <div class="chart-container">
+        <!-- Daily Average Combo Chart -->
+        <div class="chart-card" style="grid-column: span 1;">
+            <h3 style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 20px;">📅</span>
+                <span>Average Spending Levels</span>
+            </h3>
+            <canvas id="dailyAverageChart"></canvas>
+            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; text-align: center; opacity: 0.8;">Daily, weekly, and monthly averages</div>
+        </div>
+        
+        <!-- Cumulative Spending Distribution -->
+        <div class="chart-card" style="grid-column: span 1;">
+            <h3 style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 20px;">📊</span>
+                <span>Spending Distribution</span>
+            </h3>
+            <canvas id="distributionChart"></canvas>
+            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; text-align: center; opacity: 0.8;">Amount ranges across all categories</div>
+        </div>
+    </div>
+</div>
+
+<!-- ====== BUDGET FORECAST SECTION (PREMIUM) ====== -->
+<div class="forecast-card">
+    <div class="forecast-header">
+        <h3 style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 24px;">🔮</span>
+            <span>Next Month Budget Forecast (AI Powered)</span>
+        </h3>
+        <button class="forecast-btn" id="refreshBtn" onclick="refreshBudgetPrediction()">🔄 Refresh Prediction</button>
+    </div>
+    
+    <div id="predictionInfo" style="font-size: 13px; margin-bottom: 20px; opacity: 0.95; background: linear-gradient(135deg, rgba(79, 172, 254, 0.2) 0%, rgba(0, 242, 254, 0.2) 100%); padding: 14px 16px; border-radius: 10px; border-left: 4px solid #4facfe; color: #e5e0d9;"></div>
+    
+    <div id="budgetCards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 25px;"></div>
+    
+    <div id="budgetTotal" style="text-align: center; font-size: 32px; font-weight: 800; color: #e5e0d9; background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(240, 147, 251, 0.3) 100%); padding: 26px; border-radius: 12px; border: 1px solid rgba(102, 126, 234, 0.2);"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script>
+const chartInstances = {};
+
+async function loadCharts() {
+    try {
+        const [catRes, monthRes, datasetRes] = await Promise.all([
+            fetch('/api/categories'),
+            fetch('/api/months'),
+            fetch('/api/dataset-stats')
+        ]);
+        
+        const categories = await catRes.json();
+        const months = await monthRes.json();
+        const stats = await datasetRes.json();
+        
+        // Update stat cards
+        const totalAmount = Object.values(categories).reduce((a, b) => a + b, 0);
+        document.getElementById('totalExpenses').textContent = '₹' + totalAmount.toLocaleString('en-IN');
+        document.getElementById('totalTransactions').textContent = stats.user_transactions || 0;
+        
+        const topCat = Object.entries(categories).sort((a, b) => b[1] - a[1])[0];
+        document.getElementById('topCategory').textContent = topCat[0].charAt(0).toUpperCase() + topCat[0].slice(1);
+        
+        if (stats.user_transactions > 0) {
+            document.getElementById('avgTransaction').textContent = '₹' + (totalAmount / stats.user_transactions).toLocaleString('en-IN', {maximumFractionDigits: 0});
+        }
+        
+        // ===== CHART 1: ELEGANT DOUGHNUT CHART =====
+        if (chartInstances.categoryChart) chartInstances.categoryChart.destroy();
+        chartInstances.categoryChart = new Chart(document.getElementById('categoryChart'), {
+            type: 'doughnut',
+            data: {
+                labels: Object.keys(categories).map(c => c.charAt(0).toUpperCase() + c.slice(1)),
+                datasets: [{
+                    data: Object.values(categories),
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.9)',    // Blue
+                        'rgba(240, 147, 251, 0.9)',    // Pink
+                        'rgba(79, 172, 254, 0.9)',     // Cyan
+                        'rgba(250, 112, 154, 0.9)',    // Red
+                        'rgba(254, 225, 64, 0.9)',     // Yellow
+                        'rgba(76, 192, 192, 0.9)',     // Teal
+                        'rgba(255, 107, 107, 0.9)',    // Coral
+                        'rgba(156, 102, 255, 0.9)'     // Purple
+                    ],
+                    borderColor: 'transparent',
+                    borderWidth: 0,
+                    spacing: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { 
+                    legend: { 
+                        position: 'bottom',
+                        labels: { 
+                            font: { size: 12, weight: 600 },
+                            padding: 15,
+                            usePointStyle: true,
+                            pointStyle: 'circle'
+                        }
+                    },
+                    tooltip: { 
+                        callbacks: { 
+                            label: ctx => `₹${ctx.parsed.toLocaleString()} (${((ctx.parsed/totalAmount)*100).toFixed(1)}%)`
+                        },
+                        padding: 12,
+                        titleFont: { size: 13, weight: 'bold' }
+                    }
+                },
+                animation: { duration: 2000, easing: 'easeOutQuart' }
+            }
+        });
+
+        // ===== CHART 2: SMOOTH AREA CHART FOR TRENDS =====
+        if (chartInstances.monthChart) chartInstances.monthChart.destroy();
+        chartInstances.monthChart = new Chart(document.getElementById('monthChart'), {
+            type: 'line',
+            data: {
+                labels: Object.keys(months),
+                datasets: [{
+                    label: 'Monthly Spending',
+                    data: Object.values(months),
+                    backgroundColor: 'rgba(102, 126, 234, 0.15)',
+                    borderColor: 'rgba(102, 126, 234, 1)',
+                    pointBackgroundColor: 'rgba(102, 126, 234, 1)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    fill: true,
+                    tension: 0.4,
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { 
+                    y: { 
+                        beginAtZero: true,
+                        grid: { color: 'rgba(255,255,255,0.05)', drawBorder: false },
+                        ticks: { callback: v => '₹' + v.toLocaleString() }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                },
+                plugins: { 
+                    legend: { display: true, labels: { font: { size: 12, weight: 600 } } },
+                    tooltip: { 
+                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        padding: 12,
+                        callbacks: { label: ctx => `₹${ctx.parsed.y.toLocaleString()}` }
+                    }
+                },
+                animation: { duration: 2000, easing: 'easeOutQuart' }
+            }
+        });
+        
+        // ===== CHART 3: GRADIENT BAR CHART FOR TOP CATEGORIES =====
+        const topCats = Object.entries(categories)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5);
+        
+        if (chartInstances.topCategoriesChart) chartInstances.topCategoriesChart.destroy();
+        chartInstances.topCategoriesChart = new Chart(document.getElementById('topCategoriesChart'), {
+            type: 'bar',
+            data: {
+                labels: topCats.map(c => c[0].charAt(0).toUpperCase() + c[0].slice(1)),
+                datasets: [{
+                    label: 'Amount (₹)',
+                    data: topCats.map(c => c[1]),
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.9)',
+                        'rgba(240, 147, 251, 0.9)',
+                        'rgba(79, 172, 254, 0.9)',
+                        'rgba(250, 112, 154, 0.9)',
+                        'rgba(254, 225, 64, 0.9)'
+                    ],
+                    borderRadius: 12,
+                    borderSkipped: false,
+                    borderColor: 'rgba(255,255,255,0.2)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                scales: { 
+                    x: { 
+                        beginAtZero: true,
+                        ticks: { callback: v => '₹' + v.toLocaleString() },
+                        grid: { color: 'rgba(255,255,255,0.05)' }
+                    }
+                },
+                plugins: { 
+                    legend: { display: false },
+                    tooltip: { 
+                        callbacks: { label: ctx => `₹${ctx.parsed.x.toLocaleString()}` },
+                        padding: 12
+                    }
+                }
+            }
+        });
+        
+
+        // ===== CHART 5: ELEGANT LINE CHART FOR AVERAGES =====
+        const dailyAvg = Math.round(totalAmount / 30);
+        const weeklyAvg = Math.round(totalAmount / 4.3);
+        
+        if (chartInstances.dailyAverageChart) chartInstances.dailyAverageChart.destroy();
+        chartInstances.dailyAverageChart = new Chart(document.getElementById('dailyAverageChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Daily', 'Weekly', 'Monthly'],
+                datasets: [{
+                    label: 'Average Spending',
+                    data: [dailyAvg, weeklyAvg, totalAmount],
+                    backgroundColor: [
+                        'rgba(79, 172, 254, 0.9)',
+                        'rgba(102, 126, 234, 0.9)',
+                        'rgba(240, 147, 251, 0.9)'
+                    ],
+                    borderRadius: 12,
+                    borderSkipped: false,
+                    borderColor: 'rgba(255,255,255,0.2)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { 
+                        beginAtZero: true,
+                        ticks: { callback: v => '₹' + v.toLocaleString() }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: { label: ctx => `₹${ctx.parsed.y.toLocaleString()}` }
+                    }
+                }
+            }
+        });
+        
+        // ===== CHART 6: PROFESSIONAL SPENDING DISTRIBUTION HISTOGRAM =====
+        const ranges = {
+            '₹0-1K': 0,
+            '₹1K-5K': 0,
+            '₹5K-10K': 0,
+            '₹10K+': 0
+        };
+        
+        Object.values(categories).forEach(amount => {
+            if (amount <= 1000) ranges['₹0-1K']++;
+            else if (amount <= 5000) ranges['₹1K-5K']++;
+            else if (amount <= 10000) ranges['₹5K-10K']++;
+            else ranges['₹10K+']++;
+        });
+        
+        if (chartInstances.distributionChart) chartInstances.distributionChart.destroy();
+        chartInstances.distributionChart = new Chart(document.getElementById('distributionChart'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(ranges),
+                datasets: [{
+                    label: 'Number of Categories',
+                    data: Object.values(ranges),
+                    backgroundColor: [
+                        'rgba(79, 172, 254, 0.9)',
+                        'rgba(102, 126, 234, 0.9)',
+                        'rgba(240, 147, 251, 0.9)',
+                        'rgba(250, 112, 154, 0.9)'
+                    ],
+                    borderRadius: 12,
+                    borderSkipped: false,
+                    borderColor: 'rgba(255,255,255,0.2)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 },
+                        grid: { color: 'rgba(255,255,255,0.05)' }
+                    }
+                },
+                plugins: {
+                    legend: { display: true, labels: { font: { size: 12, weight: 600 } } },
+                    tooltip: { callbacks: { label: ctx => `${ctx.parsed.y} categories` } }
+                }
+            }
+        });
+        
+        // Load budget prediction
+        await loadBudgetPrediction();
+        
+    } catch(e) {
+        console.error('Chart loading failed:', e);
+    }
+}
+
+async function loadBudgetPrediction() {
+    try {
+        const res = await fetch('/api/budget-forecast');
+        if (!res.ok) throw new Error('API Error');
+        
+        const data = await res.json();
+        
+        if (!data.predictions || Object.keys(data.predictions).length === 0) {
+            document.getElementById('budgetCards').innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #fff; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; font-size: 14px;">📊 Add some expenses to see predictions</div>';
+            document.getElementById('budgetTotal').innerHTML = '💰 No data yet';
+            document.getElementById('predictionInfo').innerHTML = '⏳ Waiting for expense data...';
+            return;
+        }
+        
+        let cards = '';
+        const categoryEmojis = {
+            'food': '🍔', 'transport': '🚗', 'shopping': '🛒', 
+            'entertainment': '🎬', 'bills': '💡', 'technology': '🖥️', 'other': '📋'
+        };
+        
+        const gradients = [
+            'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+            'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+            'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+            'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
+            'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+            'linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%)',
+            'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)'
+        ];
+        
+        let idx = 0;
+        for (const [cat, amount] of Object.entries(data.predictions)) {
+            cards += `
+                <div style="background: ${gradients[idx % gradients.length]}; padding: 20px; border-radius: 14px; color: white; box-shadow: 0 8px 24px rgba(0,0,0,0.2); text-align: center; transition: transform 0.3s, box-shadow 0.3s;" class="budget-card">
+                    <div style="font-size: 24px; margin-bottom: 8px;">${categoryEmojis[cat] || '📋'}</div>
+                    <div style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">₹${parseInt(amount).toLocaleString('en-IN')}</div>
+                    <div style="font-size: 12px; text-transform: capitalize; opacity: 0.9; font-weight: 600;">${cat}</div>
+                </div>
+            `;
+            idx++;
+        }
+        
+        document.getElementById('budgetCards').innerHTML = cards;
+        document.getElementById('budgetTotal').innerHTML = `💰 <span style="font-size: 28px;">₹${parseInt(data.total).toLocaleString('en-IN')}</span>`;
+        
+        const methodText = data.factors_used ? `✨ ML Analysis using ${data.factors_used.length} factors` : '✨ ML-Powered Prediction';
+        document.getElementById('predictionInfo').innerHTML = `${methodText} | <strong>${data.transactions_analyzed}</strong> transactions analyzed`;
+        
+    } catch(e) {
+        console.error('Budget prediction error:', e);
+        document.getElementById('predictionInfo').innerHTML = '⚠️ Failed to load predictions';
+        document.getElementById('budgetCards').innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #fff; padding: 20px; background: rgba(255,0,0,0.2); border-radius: 10px;">❌ Error loading predictions</div>';
+    }
+}
+
+async function refreshBudgetPrediction() {
+    const btn = document.getElementById('refreshBtn');
+    const originalText = btn.textContent;
+    
+    try {
+        btn.textContent = '⏳ Updating...';
+        btn.disabled = true;
+        
+        const res = await fetch('/api/retrain-budget');
+        await loadBudgetPrediction();
+        
+        btn.textContent = '✅ Updated!';
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }, 2000);
+        
+    } catch(e) {
+        btn.textContent = '❌ Error!';
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }, 3000);
+    }
+}
+
+loadCharts();
+setInterval(loadCharts, 30000);
+</script>
+
+{% endblock %}

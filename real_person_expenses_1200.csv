@@ -1,0 +1,986 @@
+date,description,amount,category,merchant
+2024-01-01,Reliance Trends shirt,1030.65,shopping,Reliance
+2024-01-02,Hotstar IPL match,356.27,entertainment,Hotstar
+2024-01-03,PVR Gold movie ticket,610.18,entertainment,PVR
+2024-01-04,Uber to office Koramangala,446.27,transport,Uber
+2024-01-05,Hotstar IPL match,807.46,entertainment,Hotstar
+2024-01-06,Flipkart tshirt sale,648.39,shopping,Flipkart
+2024-01-07,McDonald's Big Mac,374.82,food,McDonald's
+2024-01-08,Metro Namma Bengaluru,241.08,transport,Metro
+2024-01-09,Airtel broadband,1380.07,bills,Airtel
+2024-01-10,Metro Namma Bengaluru,390.33,transport,Metro
+2024-01-11,Shell petrol Whitefield,342.25,transport,Shell
+2024-01-12,Local restaurant lunch,424.72,food,Local
+2024-01-13,Auto rickshaw Marathahalli,305.05,transport,Auto
+2024-01-14,Myntra shoes delivery,1082.35,shopping,Myntra
+2024-01-15,Shell petrol Whitefield,131.74,transport,Shell
+2024-01-16,Shell petrol Whitefield,331.38,transport,Shell
+2024-01-17,Airtel broadband,1982.84,bills,Airtel
+2024-01-18,Auto rickshaw Marathahalli,279.01,transport,Auto
+2024-01-19,Netflix subscription,722.32,entertainment,Netflix
+2024-01-20,Ola cab airport drop,378.64,transport,Ola
+2024-01-21,Zomato pizza delivery,430.65,food,Zomato
+2024-01-22,Tea stall chai,391.33,food,Tea
+2024-01-23,BigBasket monthly grocery,805.13,shopping,BigBasket
+2024-01-24,Ola cab airport drop,342.71,transport,Ola
+2024-01-25,Local restaurant lunch,193.94,food,Local
+2024-01-26,BMTC bus pass monthly,277.53,transport,BMTC
+2024-01-27,BigBasket monthly grocery,947.3,shopping,BigBasket
+2024-01-28,Metro Namma Bengaluru,297.12,transport,Metro
+2024-01-29,Nandhana Palace dinner,353.09,food,Nandhana
+2024-01-30,Airtel broadband,1266.44,bills,Airtel
+2024-01-31,Metro Namma Bengaluru,214.41,transport,Metro
+2024-02-01,Starbucks coffee,511.89,food,Starbucks
+2024-02-02,Uber to office Koramangala,248.08,transport,Uber
+2024-02-03,Spotify Premium,783.98,entertainment,Spotify
+2024-02-04,Metro Namma Bengaluru,284.31,transport,Metro
+2024-02-05,Local restaurant lunch,301.24,food,Local
+2024-02-06,BMTC bus pass monthly,228.5,transport,BMTC
+2024-02-07,BWSSB water charges,1307.63,bills,BWSSB
+2024-02-08,Shell petrol Whitefield,305.3,transport,Shell
+2024-02-09,Ola cab airport drop,301.22,transport,Ola
+2024-02-10,Uber to office Koramangala,339.83,transport,Uber
+2024-02-11,McDonald's Big Mac,622.82,food,McDonald's
+2024-02-12,Flipkart tshirt sale,317.37,shopping,Flipkart
+2024-02-13,Zomato pizza delivery,538.0,food,Zomato
+2024-02-14,BigBasket monthly grocery,1330.97,shopping,BigBasket
+2024-02-15,Metro Namma Bengaluru,303.54,transport,Metro
+2024-02-16,BWSSB water charges,2346.88,bills,BWSSB
+2024-02-17,Coursera ML certificate,1300.35,technology,Coursera
+2024-02-18,Local restaurant lunch,555.74,food,Local
+2024-02-19,BigBasket groceries,137.37,food,BigBasket
+2024-02-20,BESCOM electricity bill,1034.97,bills,BESCOM
+2024-02-21,PVR Gold movie ticket,1097.62,entertainment,PVR
+2024-02-22,Auto rickshaw Marathahalli,348.24,transport,Auto
+2024-02-23,Tea stall chai,402.47,food,Tea
+2024-02-24,Jio mobile recharge,2376.35,bills,Jio
+2024-02-25,McDonald's Big Mac,218.76,food,McDonald's
+2024-02-26,BESCOM electricity bill,1141.6,bills,BESCOM
+2024-02-27,Zomato pizza delivery,311.2,food,Zomato
+2024-02-28,BigBasket monthly grocery,1010.99,shopping,BigBasket
+2024-02-29,Ola cab airport drop,361.57,transport,Ola
+2024-03-01,BESCOM electricity bill,1558.0,bills,BESCOM
+2024-03-02,Auto rickshaw Marathahalli,200.0,transport,Auto
+2024-03-03,BWSSB water charges,2171.89,bills,BWSSB
+2024-03-04,Nandhana Palace dinner,369.84,food,Nandhana
+2024-03-05,Tea stall chai,324.87,food,Tea
+2024-03-06,Ola cab airport drop,42.79,transport,Ola
+2024-03-07,Jio mobile recharge,1530.99,bills,Jio
+2024-03-08,Myntra shoes delivery,1541.75,shopping,Myntra
+2024-03-09,Tea stall chai,443.28,food,Tea
+2024-03-10,BWSSB water charges,1206.41,bills,BWSSB
+2024-03-11,Flipkart tshirt sale,897.24,shopping,Flipkart
+2024-03-12,BigBasket groceries,525.65,food,BigBasket
+2024-03-13,Swiggy order biryani,507.37,food,Swiggy
+2024-03-14,Metro Namma Bengaluru,324.12,transport,Metro
+2024-03-15,Metro Namma Bengaluru,230.23,transport,Metro
+2024-03-16,Metro Namma Bengaluru,200.68,transport,Metro
+2024-03-17,BMTC bus pass monthly,315.3,transport,BMTC
+2024-03-18,Amazon laptop accessories,1306.65,shopping,Amazon
+2024-03-19,Starbucks coffee,341.73,food,Starbucks
+2024-03-20,Metro Namma Bengaluru,205.6,transport,Metro
+2024-03-21,Zomato pizza delivery,423.85,food,Zomato
+2024-03-22,Jio mobile recharge,1477.02,bills,Jio
+2024-03-23,Ola cab airport drop,282.62,transport,Ola
+2024-03-24,Amazon laptop accessories,1058.15,shopping,Amazon
+2024-03-25,BigBasket groceries,102.22,food,BigBasket
+2024-03-26,BMTC bus pass monthly,481.53,transport,BMTC
+2024-03-27,Netflix subscription,766.27,entertainment,Netflix
+2024-03-28,Ola cab airport drop,159.11,transport,Ola
+2024-03-29,Amazon laptop accessories,1048.37,shopping,Amazon
+2024-03-30,BWSSB water charges,1876.62,bills,BWSSB
+2024-03-31,Uber to office Koramangala,174.52,transport,Uber
+2024-04-01,Zomato pizza delivery,292.05,food,Zomato
+2024-04-02,BigBasket monthly grocery,553.56,shopping,BigBasket
+2024-04-03,Ola cab airport drop,351.81,transport,Ola
+2024-04-04,Udemy data science course,754.55,technology,Udemy
+2024-04-05,Flipkart tshirt sale,985.36,shopping,Flipkart
+2024-04-06,Nandhana Palace dinner,383.87,food,Nandhana
+2024-04-07,McDonald's Big Mac,304.41,food,McDonald's
+2024-04-08,BESCOM electricity bill,1886.52,bills,BESCOM
+2024-04-09,Reliance Trends shirt,935.84,shopping,Reliance
+2024-04-10,Tea stall chai,325.79,food,Tea
+2024-04-11,Netflix subscription,658.97,entertainment,Netflix
+2024-04-12,Reliance Trends shirt,1266.92,shopping,Reliance
+2024-04-13,Ola cab airport drop,169.39,transport,Ola
+2024-04-14,Tea stall chai,341.43,food,Tea
+2024-04-15,BESCOM electricity bill,1799.25,bills,BESCOM
+2024-04-16,Shell petrol Whitefield,342.44,transport,Shell
+2024-04-17,Netflix subscription,586.91,entertainment,Netflix
+2024-04-18,Nandhana Palace dinner,453.96,food,Nandhana
+2024-04-19,Domino's pasta,312.86,food,Domino's
+2024-04-20,Flipkart tshirt sale,1687.92,shopping,Flipkart
+2024-04-21,BESCOM electricity bill,2184.13,bills,BESCOM
+2024-04-22,Auto rickshaw Marathahalli,142.66,transport,Auto
+2024-04-23,Auto rickshaw Marathahalli,155.96,transport,Auto
+2024-04-24,Jio mobile recharge,1075.9,bills,Jio
+2024-04-25,Airtel broadband,2329.98,bills,Airtel
+2024-04-26,Nandhana Palace dinner,168.25,food,Nandhana
+2024-04-27,PVR Gold movie ticket,323.08,entertainment,PVR
+2024-04-28,Hotstar IPL match,896.18,entertainment,Hotstar
+2024-04-29,Hotstar IPL match,651.39,entertainment,Hotstar
+2024-04-30,Auto rickshaw Marathahalli,322.74,transport,Auto
+2024-05-01,Reliance Trends shirt,377.53,shopping,Reliance
+2024-05-02,Domino's pasta,379.65,food,Domino's
+2024-05-03,Domino's pasta,663.58,food,Domino's
+2024-05-04,Amazon laptop accessories,828.32,shopping,Amazon
+2024-05-05,Google Play Pro apps,1282.36,technology,Google
+2024-05-06,Domino's pasta,280.79,food,Domino's
+2024-05-07,Airtel broadband,2130.01,bills,Airtel
+2024-05-08,Airtel broadband,1400.34,bills,Airtel
+2024-05-09,Udemy data science course,782.21,technology,Udemy
+2024-05-10,Myntra shoes delivery,1035.15,shopping,Myntra
+2024-05-11,Metro Namma Bengaluru,92.48,transport,Metro
+2024-05-12,Amazon laptop accessories,1033.73,shopping,Amazon
+2024-05-13,Uber to office Koramangala,206.43,transport,Uber
+2024-05-14,Auto rickshaw Marathahalli,179.36,transport,Auto
+2024-05-15,Metro Namma Bengaluru,231.45,transport,Metro
+2024-05-16,Uber to office Koramangala,245.64,transport,Uber
+2024-05-17,Uber to office Koramangala,240.1,transport,Uber
+2024-05-18,Jio mobile recharge,2507.88,bills,Jio
+2024-05-19,BMTC bus pass monthly,288.21,transport,BMTC
+2024-05-20,BigBasket groceries,502.58,food,BigBasket
+2024-05-21,Airtel broadband,1707.81,bills,Airtel
+2024-05-22,Flipkart tshirt sale,826.63,shopping,Flipkart
+2024-05-23,Jio mobile recharge,1233.4,bills,Jio
+2024-05-24,Shell petrol Whitefield,277.17,transport,Shell
+2024-05-25,Flipkart tshirt sale,1001.23,shopping,Flipkart
+2024-05-26,Auto rickshaw Marathahalli,247.73,transport,Auto
+2024-05-27,Nandhana Palace dinner,355.67,food,Nandhana
+2024-05-28,Airtel broadband,780.21,bills,Airtel
+2024-05-29,BWSSB water charges,1190.7,bills,BWSSB
+2024-05-30,BigBasket groceries,369.68,food,BigBasket
+2024-05-31,Tea stall chai,163.03,food,Tea
+2024-06-01,BESCOM electricity bill,3134.7,bills,BESCOM
+2024-06-02,Domino's pasta,321.67,food,Domino's
+2024-06-03,Flipkart tshirt sale,892.34,shopping,Flipkart
+2024-06-04,BMTC bus pass monthly,346.43,transport,BMTC
+2024-06-05,Shell petrol Whitefield,178.17,transport,Shell
+2024-06-06,Spotify Premium,784.7,entertainment,Spotify
+2024-06-07,PVR Gold movie ticket,381.08,entertainment,PVR
+2024-06-08,PVR Gold movie ticket,766.0,entertainment,PVR
+2024-06-09,BigBasket monthly grocery,851.36,shopping,BigBasket
+2024-06-10,PVR Gold movie ticket,671.33,entertainment,PVR
+2024-06-11,Uber to office Koramangala,389.19,transport,Uber
+2024-06-12,BigBasket monthly grocery,1186.43,shopping,BigBasket
+2024-06-13,BigBasket groceries,394.04,food,BigBasket
+2024-06-14,McDonald's Big Mac,600.14,food,McDonald's
+2024-06-15,Airtel broadband,2105.82,bills,Airtel
+2024-06-16,Shell petrol Whitefield,224.55,transport,Shell
+2024-06-17,Flipkart tshirt sale,810.07,shopping,Flipkart
+2024-06-18,Jio mobile recharge,1093.05,bills,Jio
+2024-06-19,PVR Gold movie ticket,111.51,entertainment,PVR
+2024-06-20,BMTC bus pass monthly,269.04,transport,BMTC
+2024-06-21,BWSSB water charges,2042.96,bills,BWSSB
+2024-06-22,Amazon laptop accessories,1106.36,shopping,Amazon
+2024-06-23,Auto rickshaw Marathahalli,295.34,transport,Auto
+2024-06-24,BigBasket groceries,233.03,food,BigBasket
+2024-06-25,Tea stall chai,377.84,food,Tea
+2024-06-26,Shell petrol Whitefield,210.78,transport,Shell
+2024-06-27,PVR Gold movie ticket,795.42,entertainment,PVR
+2024-06-28,BESCOM electricity bill,1646.58,bills,BESCOM
+2024-06-29,Swiggy order biryani,247.71,food,Swiggy
+2024-06-30,Amazon laptop accessories,857.31,shopping,Amazon
+2024-07-01,BigBasket groceries,621.78,food,BigBasket
+2024-07-02,Netflix subscription,983.24,entertainment,Netflix
+2024-07-03,Coursera ML certificate,1056.5,technology,Coursera
+2024-07-04,Ola cab airport drop,289.28,transport,Ola
+2024-07-05,Swiggy order biryani,354.42,food,Swiggy
+2024-07-06,PVR Gold movie ticket,393.55,entertainment,PVR
+2024-07-07,Auto rickshaw Marathahalli,290.87,transport,Auto
+2024-07-08,Uber to office Koramangala,173.95,transport,Uber
+2024-07-09,McDonald's Big Mac,205.02,food,McDonald's
+2024-07-10,Zomato pizza delivery,233.71,food,Zomato
+2024-07-11,BigBasket groceries,356.71,food,BigBasket
+2024-07-12,BESCOM electricity bill,839.29,bills,BESCOM
+2024-07-13,Zomato pizza delivery,446.66,food,Zomato
+2024-07-14,Reliance Trends shirt,857.24,shopping,Reliance
+2024-07-15,BWSSB water charges,1981.0,bills,BWSSB
+2024-07-16,Local restaurant lunch,250.21,food,Local
+2024-07-17,PVR Gold movie ticket,821.24,entertainment,PVR
+2024-07-18,BigBasket monthly grocery,1209.31,shopping,BigBasket
+2024-07-19,Auto rickshaw Marathahalli,335.02,transport,Auto
+2024-07-20,Myntra shoes delivery,1388.09,shopping,Myntra
+2024-07-21,BigBasket monthly grocery,1252.73,shopping,BigBasket
+2024-07-22,Google Play Pro apps,1570.94,technology,Google
+2024-07-23,Uber to office Koramangala,217.75,transport,Uber
+2024-07-24,Swiggy order biryani,578.8,food,Swiggy
+2024-07-25,Amazon laptop accessories,1096.2,shopping,Amazon
+2024-07-26,Zomato pizza delivery,347.17,food,Zomato
+2024-07-27,Swiggy order biryani,377.22,food,Swiggy
+2024-07-28,BESCOM electricity bill,2677.94,bills,BESCOM
+2024-07-29,BWSSB water charges,2480.84,bills,BWSSB
+2024-07-30,BMTC bus pass monthly,392.35,transport,BMTC
+2024-07-31,BigBasket monthly grocery,721.66,shopping,BigBasket
+2024-08-01,Coursera ML certificate,728.92,technology,Coursera
+2024-08-02,Starbucks coffee,142.67,food,Starbucks
+2024-08-03,Uber to office Koramangala,349.41,transport,Uber
+2024-08-04,Local restaurant lunch,365.74,food,Local
+2024-08-05,Local restaurant lunch,407.71,food,Local
+2024-08-06,PVR Gold movie ticket,624.94,entertainment,PVR
+2024-08-07,Metro Namma Bengaluru,368.08,transport,Metro
+2024-08-08,Google Play Pro apps,1527.23,technology,Google
+2024-08-09,Jio mobile recharge,1991.93,bills,Jio
+2024-08-10,BigBasket groceries,422.11,food,BigBasket
+2024-08-11,Swiggy order biryani,411.51,food,Swiggy
+2024-08-12,Spotify Premium,735.91,entertainment,Spotify
+2024-08-13,BigBasket monthly grocery,973.54,shopping,BigBasket
+2024-08-14,Uber to office Koramangala,279.84,transport,Uber
+2024-08-15,Shell petrol Whitefield,333.08,transport,Shell
+2024-08-16,BMTC bus pass monthly,392.01,transport,BMTC
+2024-08-17,BMTC bus pass monthly,231.23,transport,BMTC
+2024-08-18,BMTC bus pass monthly,45.8,transport,BMTC
+2024-08-19,Swiggy order biryani,183.34,food,Swiggy
+2024-08-20,BWSSB water charges,1884.66,bills,BWSSB
+2024-08-21,Metro Namma Bengaluru,400.07,transport,Metro
+2024-08-22,Shell petrol Whitefield,272.47,transport,Shell
+2024-08-23,Netflix subscription,496.96,entertainment,Netflix
+2024-08-24,Google Play Pro apps,1267.95,technology,Google
+2024-08-25,BigBasket monthly grocery,1430.62,shopping,BigBasket
+2024-08-26,Nandhana Palace dinner,360.33,food,Nandhana
+2024-08-27,Coursera ML certificate,1133.81,technology,Coursera
+2024-08-28,Reliance Trends shirt,633.47,shopping,Reliance
+2024-08-29,BESCOM electricity bill,2142.81,bills,BESCOM
+2024-08-30,Airtel broadband,2781.43,bills,Airtel
+2024-08-31,Amazon laptop accessories,298.91,shopping,Amazon
+2024-09-01,Nandhana Palace dinner,384.22,food,Nandhana
+2024-09-02,Swiggy order biryani,379.78,food,Swiggy
+2024-09-03,Local restaurant lunch,315.93,food,Local
+2024-09-04,Uber to office Koramangala,265.97,transport,Uber
+2024-09-05,BMTC bus pass monthly,361.83,transport,BMTC
+2024-09-06,Netflix subscription,681.26,entertainment,Netflix
+2024-09-07,Flipkart tshirt sale,1395.66,shopping,Flipkart
+2024-09-08,BigBasket monthly grocery,989.57,shopping,BigBasket
+2024-09-09,Metro Namma Bengaluru,359.25,transport,Metro
+2024-09-10,Jio mobile recharge,1847.49,bills,Jio
+2024-09-11,Swiggy order biryani,226.55,food,Swiggy
+2024-09-12,Nandhana Palace dinner,355.02,food,Nandhana
+2024-09-13,BESCOM electricity bill,1943.23,bills,BESCOM
+2024-09-14,Myntra shoes delivery,843.9,shopping,Myntra
+2024-09-15,Reliance Trends shirt,1209.43,shopping,Reliance
+2024-09-16,Google Play Pro apps,1952.61,technology,Google
+2024-09-17,Metro Namma Bengaluru,240.3,transport,Metro
+2024-09-18,Metro Namma Bengaluru,282.38,transport,Metro
+2024-09-19,Local restaurant lunch,315.05,food,Local
+2024-09-20,Udemy data science course,1312.08,technology,Udemy
+2024-09-21,Zomato pizza delivery,243.17,food,Zomato
+2024-09-22,McDonald's Big Mac,353.79,food,McDonald's
+2024-09-23,Spotify Premium,598.07,entertainment,Spotify
+2024-09-24,Metro Namma Bengaluru,302.36,transport,Metro
+2024-09-25,Zomato pizza delivery,334.32,food,Zomato
+2024-09-26,Uber to office Koramangala,446.89,transport,Uber
+2024-09-27,Metro Namma Bengaluru,183.58,transport,Metro
+2024-09-28,Auto rickshaw Marathahalli,144.56,transport,Auto
+2024-09-29,Myntra shoes delivery,977.34,shopping,Myntra
+2024-09-30,Nandhana Palace dinner,434.1,food,Nandhana
+2024-10-01,Uber to office Koramangala,275.64,transport,Uber
+2024-10-02,Jio mobile recharge,1728.26,bills,Jio
+2024-10-03,Google Play Pro apps,1873.72,technology,Google
+2024-10-04,Shell petrol Whitefield,136.53,transport,Shell
+2024-10-05,BESCOM electricity bill,706.43,bills,BESCOM
+2024-10-06,Reliance Trends shirt,605.73,shopping,Reliance
+2024-10-07,Google Play Pro apps,1485.02,technology,Google
+2024-10-08,Google Play Pro apps,1430.12,technology,Google
+2024-10-09,Udemy data science course,1333.75,technology,Udemy
+2024-10-10,Auto rickshaw Marathahalli,266.68,transport,Auto
+2024-10-11,BigBasket monthly grocery,1521.07,shopping,BigBasket
+2024-10-12,Amazon laptop accessories,1256.32,shopping,Amazon
+2024-10-13,Amazon laptop accessories,1186.69,shopping,Amazon
+2024-10-14,Nandhana Palace dinner,248.94,food,Nandhana
+2024-10-15,Shell petrol Whitefield,209.29,transport,Shell
+2024-10-16,BESCOM electricity bill,2220.56,bills,BESCOM
+2024-10-17,Google Play Pro apps,1960.69,technology,Google
+2024-10-18,Jio mobile recharge,2394.41,bills,Jio
+2024-10-19,Coursera ML certificate,1621.18,technology,Coursera
+2024-10-20,Domino's pasta,487.09,food,Domino's
+2024-10-21,Myntra shoes delivery,1179.14,shopping,Myntra
+2024-10-22,Auto rickshaw Marathahalli,295.05,transport,Auto
+2024-10-23,Uber to office Koramangala,347.7,transport,Uber
+2024-10-24,Starbucks coffee,450.05,food,Starbucks
+2024-10-25,BESCOM electricity bill,1576.82,bills,BESCOM
+2024-10-26,Google Play Pro apps,880.43,technology,Google
+2024-10-27,Myntra shoes delivery,802.04,shopping,Myntra
+2024-10-28,McDonald's Big Mac,297.48,food,McDonald's
+2024-10-29,BESCOM electricity bill,1277.08,bills,BESCOM
+2024-10-30,Udemy data science course,1414.44,technology,Udemy
+2024-10-31,Domino's pasta,454.59,food,Domino's
+2024-11-01,BMTC bus pass monthly,414.57,transport,BMTC
+2024-11-02,BESCOM electricity bill,1722.12,bills,BESCOM
+2024-11-03,Airtel broadband,1733.77,bills,Airtel
+2024-11-04,BESCOM electricity bill,1245.7,bills,BESCOM
+2024-11-05,PVR Gold movie ticket,542.29,entertainment,PVR
+2024-11-06,BMTC bus pass monthly,180.03,transport,BMTC
+2024-11-07,Nandhana Palace dinner,180.75,food,Nandhana
+2024-11-08,Udemy data science course,1598.78,technology,Udemy
+2024-11-09,BESCOM electricity bill,1294.74,bills,BESCOM
+2024-11-10,Domino's pasta,458.04,food,Domino's
+2024-11-11,Ola cab airport drop,236.67,transport,Ola
+2024-11-12,BWSSB water charges,2275.97,bills,BWSSB
+2024-11-13,Spotify Premium,823.05,entertainment,Spotify
+2024-11-14,Myntra shoes delivery,775.34,shopping,Myntra
+2024-11-15,Uber to office Koramangala,419.63,transport,Uber
+2024-11-16,Auto rickshaw Marathahalli,189.49,transport,Auto
+2024-11-17,Hotstar IPL match,540.54,entertainment,Hotstar
+2024-11-18,Google Play Pro apps,1503.56,technology,Google
+2024-11-19,McDonald's Big Mac,385.95,food,McDonald's
+2024-11-20,Tea stall chai,427.41,food,Tea
+2024-11-21,Auto rickshaw Marathahalli,256.41,transport,Auto
+2024-11-22,Auto rickshaw Marathahalli,321.12,transport,Auto
+2024-11-23,BMTC bus pass monthly,372.35,transport,BMTC
+2024-11-24,Shell petrol Whitefield,461.05,transport,Shell
+2024-11-25,BWSSB water charges,1815.09,bills,BWSSB
+2024-11-26,Local restaurant lunch,357.85,food,Local
+2024-11-27,Flipkart tshirt sale,1364.91,shopping,Flipkart
+2024-11-28,Uber to office Koramangala,162.46,transport,Uber
+2024-11-29,Starbucks coffee,461.06,food,Starbucks
+2024-11-30,Coursera ML certificate,1172.51,technology,Coursera
+2024-12-01,Swiggy order biryani,259.6,food,Swiggy
+2024-12-02,Metro Namma Bengaluru,165.76,transport,Metro
+2024-12-03,Flipkart tshirt sale,1170.59,shopping,Flipkart
+2024-12-04,Uber to office Koramangala,293.28,transport,Uber
+2024-12-05,Flipkart tshirt sale,1292.06,shopping,Flipkart
+2024-12-06,Amazon laptop accessories,937.35,shopping,Amazon
+2024-12-07,Shell petrol Whitefield,270.46,transport,Shell
+2024-12-08,Hotstar IPL match,392.62,entertainment,Hotstar
+2024-12-09,Zomato pizza delivery,482.98,food,Zomato
+2024-12-10,Local restaurant lunch,222.15,food,Local
+2024-12-11,Myntra shoes delivery,806.14,shopping,Myntra
+2024-12-12,Myntra shoes delivery,546.58,shopping,Myntra
+2024-12-13,Metro Namma Bengaluru,416.89,transport,Metro
+2024-12-14,Flipkart tshirt sale,923.03,shopping,Flipkart
+2024-12-15,Udemy data science course,941.63,technology,Udemy
+2024-12-16,Domino's pasta,375.15,food,Domino's
+2024-12-17,Local restaurant lunch,344.7,food,Local
+2024-12-18,Jio mobile recharge,1205.62,bills,Jio
+2024-12-19,Uber to office Koramangala,305.32,transport,Uber
+2024-12-20,Local restaurant lunch,398.4,food,Local
+2024-12-21,Zomato pizza delivery,264.56,food,Zomato
+2024-12-22,McDonald's Big Mac,331.49,food,McDonald's
+2024-12-23,BWSSB water charges,497.62,bills,BWSSB
+2024-12-24,Zomato pizza delivery,325.91,food,Zomato
+2024-12-25,Google Play Pro apps,1038.12,technology,Google
+2024-12-26,Domino's pasta,257.42,food,Domino's
+2024-12-27,Coursera ML certificate,1503.1,technology,Coursera
+2024-12-28,Nandhana Palace dinner,409.15,food,Nandhana
+2024-12-29,Swiggy order biryani,246.71,food,Swiggy
+2024-12-30,Coursera ML certificate,2195.98,technology,Coursera
+2024-12-31,McDonald's Big Mac,344.37,food,McDonald's
+2025-01-01,Starbucks coffee,429.89,food,Starbucks
+2025-01-02,Amazon laptop accessories,907.16,shopping,Amazon
+2025-01-03,Starbucks coffee,474.71,food,Starbucks
+2025-01-04,Airtel broadband,2754.38,bills,Airtel
+2025-01-05,Metro Namma Bengaluru,308.88,transport,Metro
+2025-01-06,Amazon laptop accessories,1114.4,shopping,Amazon
+2025-01-07,Reliance Trends shirt,898.82,shopping,Reliance
+2025-01-08,Shell petrol Whitefield,266.27,transport,Shell
+2025-01-09,Netflix subscription,1024.92,entertainment,Netflix
+2025-01-10,Domino's pasta,354.55,food,Domino's
+2025-01-11,Uber to office Koramangala,374.39,transport,Uber
+2025-01-12,Domino's pasta,222.25,food,Domino's
+2025-01-13,Local restaurant lunch,249.58,food,Local
+2025-01-14,BMTC bus pass monthly,263.44,transport,BMTC
+2025-01-15,McDonald's Big Mac,146.07,food,McDonald's
+2025-01-16,Jio mobile recharge,2566.11,bills,Jio
+2025-01-17,Auto rickshaw Marathahalli,312.69,transport,Auto
+2025-01-18,BESCOM electricity bill,2244.7,bills,BESCOM
+2025-01-19,Auto rickshaw Marathahalli,293.19,transport,Auto
+2025-01-20,Jio mobile recharge,2014.57,bills,Jio
+2025-01-21,Amazon laptop accessories,855.13,shopping,Amazon
+2025-01-22,PVR Gold movie ticket,710.09,entertainment,PVR
+2025-01-23,Jio mobile recharge,1259.5,bills,Jio
+2025-01-24,Flipkart tshirt sale,763.11,shopping,Flipkart
+2025-01-25,Local restaurant lunch,308.26,food,Local
+2025-01-26,Swiggy order biryani,349.46,food,Swiggy
+2025-01-27,Uber to office Koramangala,255.88,transport,Uber
+2025-01-28,Shell petrol Whitefield,311.09,transport,Shell
+2025-01-29,Myntra shoes delivery,721.55,shopping,Myntra
+2025-01-30,Tea stall chai,296.13,food,Tea
+2025-01-31,BigBasket groceries,464.12,food,BigBasket
+2025-02-01,Hotstar IPL match,451.95,entertainment,Hotstar
+2025-02-02,Metro Namma Bengaluru,315.84,transport,Metro
+2025-02-03,BMTC bus pass monthly,220.5,transport,BMTC
+2025-02-04,BigBasket groceries,180.66,food,BigBasket
+2025-02-05,Starbucks coffee,315.27,food,Starbucks
+2025-02-06,Myntra shoes delivery,1165.89,shopping,Myntra
+2025-02-07,Zomato pizza delivery,251.63,food,Zomato
+2025-02-08,BMTC bus pass monthly,264.49,transport,BMTC
+2025-02-09,Jio mobile recharge,592.47,bills,Jio
+2025-02-10,Tea stall chai,226.3,food,Tea
+2025-02-11,Reliance Trends shirt,1150.07,shopping,Reliance
+2025-02-12,PVR Gold movie ticket,892.15,entertainment,PVR
+2025-02-13,Spotify Premium,468.01,entertainment,Spotify
+2025-02-14,BMTC bus pass monthly,214.84,transport,BMTC
+2025-02-15,Hotstar IPL match,879.72,entertainment,Hotstar
+2025-02-16,Uber to office Koramangala,223.5,transport,Uber
+2025-02-17,Amazon laptop accessories,913.08,shopping,Amazon
+2025-02-18,Local restaurant lunch,469.86,food,Local
+2025-02-19,Flipkart tshirt sale,833.86,shopping,Flipkart
+2025-02-20,Starbucks coffee,340.57,food,Starbucks
+2025-02-21,Ola cab airport drop,398.99,transport,Ola
+2025-02-22,Auto rickshaw Marathahalli,460.69,transport,Auto
+2025-02-23,BigBasket groceries,326.4,food,BigBasket
+2025-02-24,Airtel broadband,1137.7,bills,Airtel
+2025-02-25,Nandhana Palace dinner,256.76,food,Nandhana
+2025-02-26,Zomato pizza delivery,358.56,food,Zomato
+2025-02-27,Reliance Trends shirt,936.03,shopping,Reliance
+2025-02-28,Myntra shoes delivery,1060.3,shopping,Myntra
+2025-03-01,Google Play Pro apps,1322.35,technology,Google
+2025-03-02,Local restaurant lunch,434.07,food,Local
+2025-03-03,Reliance Trends shirt,441.28,shopping,Reliance
+2025-03-04,Jio mobile recharge,2479.02,bills,Jio
+2025-03-05,Reliance Trends shirt,845.3,shopping,Reliance
+2025-03-06,Domino's pasta,257.3,food,Domino's
+2025-03-07,Hotstar IPL match,442.35,entertainment,Hotstar
+2025-03-08,Swiggy order biryani,286.13,food,Swiggy
+2025-03-09,Uber to office Koramangala,235.82,transport,Uber
+2025-03-10,Netflix subscription,644.54,entertainment,Netflix
+2025-03-11,Myntra shoes delivery,590.37,shopping,Myntra
+2025-03-12,Ola cab airport drop,332.53,transport,Ola
+2025-03-13,Nandhana Palace dinner,447.35,food,Nandhana
+2025-03-14,Netflix subscription,1070.84,entertainment,Netflix
+2025-03-15,Nandhana Palace dinner,261.71,food,Nandhana
+2025-03-16,Jio mobile recharge,2084.94,bills,Jio
+2025-03-17,Local restaurant lunch,333.59,food,Local
+2025-03-18,Amazon laptop accessories,985.4,shopping,Amazon
+2025-03-19,Jio mobile recharge,2438.46,bills,Jio
+2025-03-20,Netflix subscription,660.95,entertainment,Netflix
+2025-03-21,Airtel broadband,1625.65,bills,Airtel
+2025-03-22,Starbucks coffee,463.89,food,Starbucks
+2025-03-23,Nandhana Palace dinner,475.07,food,Nandhana
+2025-03-24,Shell petrol Whitefield,217.72,transport,Shell
+2025-03-25,Jio mobile recharge,1221.88,bills,Jio
+2025-03-26,Netflix subscription,955.85,entertainment,Netflix
+2025-03-27,BigBasket monthly grocery,618.56,shopping,BigBasket
+2025-03-28,Local restaurant lunch,420.63,food,Local
+2025-03-29,Coursera ML certificate,1181.97,technology,Coursera
+2025-03-30,Flipkart tshirt sale,546.23,shopping,Flipkart
+2025-03-31,Auto rickshaw Marathahalli,306.3,transport,Auto
+2025-04-01,Google Play Pro apps,1010.42,technology,Google
+2025-04-02,Tea stall chai,308.89,food,Tea
+2025-04-03,Flipkart tshirt sale,1071.12,shopping,Flipkart
+2025-04-04,McDonald's Big Mac,367.45,food,McDonald's
+2025-04-05,PVR Gold movie ticket,712.46,entertainment,PVR
+2025-04-06,Amazon laptop accessories,747.89,shopping,Amazon
+2025-04-07,Udemy data science course,1356.31,technology,Udemy
+2025-04-08,Tea stall chai,442.46,food,Tea
+2025-04-09,Starbucks coffee,337.83,food,Starbucks
+2025-04-10,Jio mobile recharge,2351.66,bills,Jio
+2025-04-11,Spotify Premium,963.38,entertainment,Spotify
+2025-04-12,Ola cab airport drop,341.98,transport,Ola
+2025-04-13,Netflix subscription,944.39,entertainment,Netflix
+2025-04-14,BigBasket monthly grocery,949.86,shopping,BigBasket
+2025-04-15,Airtel broadband,1986.42,bills,Airtel
+2025-04-16,BWSSB water charges,1818.54,bills,BWSSB
+2025-04-17,McDonald's Big Mac,428.62,food,McDonald's
+2025-04-18,Airtel broadband,1725.67,bills,Airtel
+2025-04-19,Uber to office Koramangala,291.53,transport,Uber
+2025-04-20,Flipkart tshirt sale,1387.98,shopping,Flipkart
+2025-04-21,Metro Namma Bengaluru,179.68,transport,Metro
+2025-04-22,Domino's pasta,262.77,food,Domino's
+2025-04-23,PVR Gold movie ticket,519.15,entertainment,PVR
+2025-04-24,Auto rickshaw Marathahalli,219.15,transport,Auto
+2025-04-25,Zomato pizza delivery,533.11,food,Zomato
+2025-04-26,Jio mobile recharge,1224.73,bills,Jio
+2025-04-27,Spotify Premium,738.18,entertainment,Spotify
+2025-04-28,Hotstar IPL match,530.4,entertainment,Hotstar
+2025-04-29,Uber to office Koramangala,282.59,transport,Uber
+2025-04-30,PVR Gold movie ticket,548.35,entertainment,PVR
+2025-05-01,Nandhana Palace dinner,376.18,food,Nandhana
+2025-05-02,BigBasket monthly grocery,1021.37,shopping,BigBasket
+2025-05-03,Shell petrol Whitefield,261.02,transport,Shell
+2025-05-04,Ola cab airport drop,260.65,transport,Ola
+2025-05-05,Swiggy order biryani,437.48,food,Swiggy
+2025-05-06,BigBasket groceries,543.49,food,BigBasket
+2025-05-07,Netflix subscription,787.41,entertainment,Netflix
+2025-05-08,BigBasket monthly grocery,626.4,shopping,BigBasket
+2025-05-09,Swiggy order biryani,309.77,food,Swiggy
+2025-05-10,McDonald's Big Mac,219.58,food,McDonald's
+2025-05-11,BigBasket groceries,289.19,food,BigBasket
+2025-05-12,Nandhana Palace dinner,127.71,food,Nandhana
+2025-05-13,BESCOM electricity bill,298.35,bills,BESCOM
+2025-05-14,Local restaurant lunch,392.36,food,Local
+2025-05-15,PVR Gold movie ticket,416.19,entertainment,PVR
+2025-05-16,Swiggy order biryani,400.26,food,Swiggy
+2025-05-17,Airtel broadband,2679.71,bills,Airtel
+2025-05-18,BESCOM electricity bill,3180.18,bills,BESCOM
+2025-05-19,Hotstar IPL match,488.43,entertainment,Hotstar
+2025-05-20,Tea stall chai,513.77,food,Tea
+2025-05-21,Nandhana Palace dinner,299.97,food,Nandhana
+2025-05-22,Google Play Pro apps,1460.32,technology,Google
+2025-05-23,Flipkart tshirt sale,1094.49,shopping,Flipkart
+2025-05-24,McDonald's Big Mac,319.22,food,McDonald's
+2025-05-25,Flipkart tshirt sale,1051.0,shopping,Flipkart
+2025-05-26,Nandhana Palace dinner,409.35,food,Nandhana
+2025-05-27,Udemy data science course,1522.4,technology,Udemy
+2025-05-28,Google Play Pro apps,1264.27,technology,Google
+2025-05-29,PVR Gold movie ticket,551.51,entertainment,PVR
+2025-05-30,BigBasket groceries,287.0,food,BigBasket
+2025-05-31,Ola cab airport drop,282.33,transport,Ola
+2025-06-01,BigBasket groceries,439.77,food,BigBasket
+2025-06-02,BMTC bus pass monthly,219.39,transport,BMTC
+2025-06-03,Zomato pizza delivery,224.56,food,Zomato
+2025-06-04,Jio mobile recharge,1338.87,bills,Jio
+2025-06-05,Uber to office Koramangala,328.37,transport,Uber
+2025-06-06,Spotify Premium,826.17,entertainment,Spotify
+2025-06-07,Shell petrol Whitefield,224.1,transport,Shell
+2025-06-08,Uber to office Koramangala,312.31,transport,Uber
+2025-06-09,Hotstar IPL match,830.12,entertainment,Hotstar
+2025-06-10,BESCOM electricity bill,2022.84,bills,BESCOM
+2025-06-11,BWSSB water charges,1458.45,bills,BWSSB
+2025-06-12,Uber to office Koramangala,228.16,transport,Uber
+2025-06-13,Nandhana Palace dinner,537.65,food,Nandhana
+2025-06-14,Spotify Premium,832.15,entertainment,Spotify
+2025-06-15,Auto rickshaw Marathahalli,305.75,transport,Auto
+2025-06-16,Coursera ML certificate,1241.29,technology,Coursera
+2025-06-17,Myntra shoes delivery,650.73,shopping,Myntra
+2025-06-18,BESCOM electricity bill,1919.19,bills,BESCOM
+2025-06-19,Airtel broadband,1492.91,bills,Airtel
+2025-06-20,McDonald's Big Mac,66.58,food,McDonald's
+2025-06-21,Auto rickshaw Marathahalli,219.18,transport,Auto
+2025-06-22,Metro Namma Bengaluru,297.76,transport,Metro
+2025-06-23,Airtel broadband,1903.78,bills,Airtel
+2025-06-24,Netflix subscription,684.25,entertainment,Netflix
+2025-06-25,Reliance Trends shirt,1399.47,shopping,Reliance
+2025-06-26,Zomato pizza delivery,487.1,food,Zomato
+2025-06-27,Netflix subscription,518.31,entertainment,Netflix
+2025-06-28,BESCOM electricity bill,2310.82,bills,BESCOM
+2025-06-29,BESCOM electricity bill,2072.64,bills,BESCOM
+2025-06-30,Shell petrol Whitefield,201.97,transport,Shell
+2025-07-01,Hotstar IPL match,507.63,entertainment,Hotstar
+2025-07-02,Local restaurant lunch,290.36,food,Local
+2025-07-03,Metro Namma Bengaluru,317.89,transport,Metro
+2025-07-04,Zomato pizza delivery,182.49,food,Zomato
+2025-07-05,Shell petrol Whitefield,249.85,transport,Shell
+2025-07-06,Myntra shoes delivery,754.08,shopping,Myntra
+2025-07-07,Ola cab airport drop,315.03,transport,Ola
+2025-07-08,Spotify Premium,852.45,entertainment,Spotify
+2025-07-09,Local restaurant lunch,343.12,food,Local
+2025-07-10,Shell petrol Whitefield,263.71,transport,Shell
+2025-07-11,Local restaurant lunch,372.32,food,Local
+2025-07-12,Coursera ML certificate,1709.95,technology,Coursera
+2025-07-13,McDonald's Big Mac,171.36,food,McDonald's
+2025-07-14,Tea stall chai,311.48,food,Tea
+2025-07-15,Uber to office Koramangala,419.25,transport,Uber
+2025-07-16,Swiggy order biryani,390.14,food,Swiggy
+2025-07-17,Swiggy order biryani,307.49,food,Swiggy
+2025-07-18,Shell petrol Whitefield,349.84,transport,Shell
+2025-07-19,BESCOM electricity bill,897.37,bills,BESCOM
+2025-07-20,BWSSB water charges,2649.55,bills,BWSSB
+2025-07-21,Google Play Pro apps,1657.21,technology,Google
+2025-07-22,BESCOM electricity bill,3004.55,bills,BESCOM
+2025-07-23,Shell petrol Whitefield,333.71,transport,Shell
+2025-07-24,Swiggy order biryani,488.42,food,Swiggy
+2025-07-25,Ola cab airport drop,377.81,transport,Ola
+2025-07-26,Netflix subscription,603.38,entertainment,Netflix
+2025-07-27,BigBasket monthly grocery,565.74,shopping,BigBasket
+2025-07-28,Airtel broadband,2387.3,bills,Airtel
+2025-07-29,McDonald's Big Mac,360.58,food,McDonald's
+2025-07-30,Myntra shoes delivery,600.5,shopping,Myntra
+2025-07-31,Reliance Trends shirt,595.62,shopping,Reliance
+2025-08-01,Starbucks coffee,413.43,food,Starbucks
+2025-08-02,Tea stall chai,420.65,food,Tea
+2025-08-03,Coursera ML certificate,1194.48,technology,Coursera
+2025-08-04,BigBasket monthly grocery,1247.44,shopping,BigBasket
+2025-08-05,Shell petrol Whitefield,347.33,transport,Shell
+2025-08-06,Airtel broadband,1956.49,bills,Airtel
+2025-08-07,Local restaurant lunch,378.62,food,Local
+2025-08-08,Flipkart tshirt sale,599.48,shopping,Flipkart
+2025-08-09,Airtel broadband,1719.46,bills,Airtel
+2025-08-10,Spotify Premium,719.23,entertainment,Spotify
+2025-08-11,Starbucks coffee,327.58,food,Starbucks
+2025-08-12,Swiggy order biryani,116.42,food,Swiggy
+2025-08-13,Local restaurant lunch,356.06,food,Local
+2025-08-14,Auto rickshaw Marathahalli,213.11,transport,Auto
+2025-08-15,BESCOM electricity bill,1089.65,bills,BESCOM
+2025-08-16,BigBasket monthly grocery,1061.92,shopping,BigBasket
+2025-08-17,Netflix subscription,990.3,entertainment,Netflix
+2025-08-18,BMTC bus pass monthly,292.61,transport,BMTC
+2025-08-19,Metro Namma Bengaluru,298.84,transport,Metro
+2025-08-20,PVR Gold movie ticket,245.18,entertainment,PVR
+2025-08-21,Reliance Trends shirt,1147.73,shopping,Reliance
+2025-08-22,BigBasket groceries,274.45,food,BigBasket
+2025-08-23,BESCOM electricity bill,2201.47,bills,BESCOM
+2025-08-24,Spotify Premium,484.11,entertainment,Spotify
+2025-08-25,PVR Gold movie ticket,634.69,entertainment,PVR
+2025-08-26,PVR Gold movie ticket,667.85,entertainment,PVR
+2025-08-27,PVR Gold movie ticket,813.4,entertainment,PVR
+2025-08-28,Starbucks coffee,427.72,food,Starbucks
+2025-08-29,BESCOM electricity bill,1395.2,bills,BESCOM
+2025-08-30,Domino's pasta,246.11,food,Domino's
+2025-08-31,Udemy data science course,1393.87,technology,Udemy
+2025-09-01,Ola cab airport drop,218.84,transport,Ola
+2025-09-02,McDonald's Big Mac,350.41,food,McDonald's
+2025-09-03,Auto rickshaw Marathahalli,289.22,transport,Auto
+2025-09-04,Spotify Premium,1278.78,entertainment,Spotify
+2025-09-05,BWSSB water charges,1979.39,bills,BWSSB
+2025-09-06,BESCOM electricity bill,1721.34,bills,BESCOM
+2025-09-07,Local restaurant lunch,347.39,food,Local
+2025-09-08,Uber to office Koramangala,270.13,transport,Uber
+2025-09-09,Auto rickshaw Marathahalli,219.81,transport,Auto
+2025-09-10,Flipkart tshirt sale,686.39,shopping,Flipkart
+2025-09-11,Local restaurant lunch,463.68,food,Local
+2025-09-12,Zomato pizza delivery,248.01,food,Zomato
+2025-09-13,BigBasket groceries,411.97,food,BigBasket
+2025-09-14,Auto rickshaw Marathahalli,275.01,transport,Auto
+2025-09-15,Metro Namma Bengaluru,305.54,transport,Metro
+2025-09-16,Flipkart tshirt sale,1171.95,shopping,Flipkart
+2025-09-17,Tea stall chai,335.23,food,Tea
+2025-09-18,Myntra shoes delivery,1151.77,shopping,Myntra
+2025-09-19,Metro Namma Bengaluru,329.41,transport,Metro
+2025-09-20,Reliance Trends shirt,1086.63,shopping,Reliance
+2025-09-21,Swiggy order biryani,334.14,food,Swiggy
+2025-09-22,Airtel broadband,2001.43,bills,Airtel
+2025-09-23,BigBasket groceries,123.32,food,BigBasket
+2025-09-24,Udemy data science course,968.11,technology,Udemy
+2025-09-25,Reliance Trends shirt,939.61,shopping,Reliance
+2025-09-26,Shell petrol Whitefield,336.73,transport,Shell
+2025-09-27,Udemy data science course,1097.66,technology,Udemy
+2025-09-28,Zomato pizza delivery,330.28,food,Zomato
+2025-09-29,BigBasket monthly grocery,933.01,shopping,BigBasket
+2025-09-30,Starbucks coffee,325.78,food,Starbucks
+2025-10-01,Swiggy order biryani,189.51,food,Swiggy
+2025-10-02,Shell petrol Whitefield,285.04,transport,Shell
+2025-10-03,BESCOM electricity bill,1976.76,bills,BESCOM
+2025-10-04,Myntra shoes delivery,940.03,shopping,Myntra
+2025-10-05,Local restaurant lunch,324.07,food,Local
+2025-10-06,Udemy data science course,1426.01,technology,Udemy
+2025-10-07,Google Play Pro apps,1754.27,technology,Google
+2025-10-08,Hotstar IPL match,1008.19,entertainment,Hotstar
+2025-10-09,Myntra shoes delivery,745.26,shopping,Myntra
+2025-10-10,BigBasket monthly grocery,857.91,shopping,BigBasket
+2025-10-11,BigBasket monthly grocery,1282.27,shopping,BigBasket
+2025-10-12,Myntra shoes delivery,277.23,shopping,Myntra
+2025-10-13,Flipkart tshirt sale,1515.98,shopping,Flipkart
+2025-10-14,Zomato pizza delivery,566.45,food,Zomato
+2025-10-15,Amazon laptop accessories,847.38,shopping,Amazon
+2025-10-16,McDonald's Big Mac,70.57,food,McDonald's
+2025-10-17,Tea stall chai,377.9,food,Tea
+2025-10-18,Tea stall chai,397.66,food,Tea
+2025-10-19,Udemy data science course,1629.83,technology,Udemy
+2025-10-20,Starbucks coffee,351.79,food,Starbucks
+2025-10-21,Flipkart tshirt sale,1022.93,shopping,Flipkart
+2025-10-22,Uber to office Koramangala,331.45,transport,Uber
+2025-10-23,Shell petrol Whitefield,347.45,transport,Shell
+2025-10-24,Uber to office Koramangala,245.5,transport,Uber
+2025-10-25,Netflix subscription,410.78,entertainment,Netflix
+2025-10-26,Shell petrol Whitefield,253.74,transport,Shell
+2025-10-27,Shell petrol Whitefield,342.49,transport,Shell
+2025-10-28,Spotify Premium,853.86,entertainment,Spotify
+2025-10-29,Netflix subscription,456.36,entertainment,Netflix
+2025-10-30,Auto rickshaw Marathahalli,329.75,transport,Auto
+2025-10-31,Tea stall chai,343.15,food,Tea
+2025-11-01,PVR Gold movie ticket,781.62,entertainment,PVR
+2025-11-02,Jio mobile recharge,1804.59,bills,Jio
+2025-11-03,BWSSB water charges,1549.05,bills,BWSSB
+2025-11-04,BMTC bus pass monthly,112.13,transport,BMTC
+2025-11-05,Flipkart tshirt sale,813.17,shopping,Flipkart
+2025-11-06,Myntra shoes delivery,686.83,shopping,Myntra
+2025-11-07,Spotify Premium,395.26,entertainment,Spotify
+2025-11-08,Shell petrol Whitefield,366.35,transport,Shell
+2025-11-09,Jio mobile recharge,1926.38,bills,Jio
+2025-11-10,Myntra shoes delivery,1127.93,shopping,Myntra
+2025-11-11,BWSSB water charges,1399.76,bills,BWSSB
+2025-11-12,Nandhana Palace dinner,360.26,food,Nandhana
+2025-11-13,Flipkart tshirt sale,892.83,shopping,Flipkart
+2025-11-14,Tea stall chai,288.76,food,Tea
+2025-11-15,Swiggy order biryani,367.64,food,Swiggy
+2025-11-16,Auto rickshaw Marathahalli,329.27,transport,Auto
+2025-11-17,Uber to office Koramangala,514.66,transport,Uber
+2025-11-18,Amazon laptop accessories,807.84,shopping,Amazon
+2025-11-19,BigBasket groceries,42.33,food,BigBasket
+2025-11-20,Airtel broadband,2359.04,bills,Airtel
+2025-11-21,Flipkart tshirt sale,792.55,shopping,Flipkart
+2025-11-22,Swiggy order biryani,303.39,food,Swiggy
+2025-11-23,Flipkart tshirt sale,738.35,shopping,Flipkart
+2025-11-24,Coursera ML certificate,1342.42,technology,Coursera
+2025-11-25,Tea stall chai,395.93,food,Tea
+2025-11-26,Starbucks coffee,312.74,food,Starbucks
+2025-11-27,Local restaurant lunch,461.16,food,Local
+2025-11-28,Tea stall chai,293.17,food,Tea
+2025-11-29,Swiggy order biryani,379.51,food,Swiggy
+2025-11-30,Nandhana Palace dinner,361.14,food,Nandhana
+2025-12-01,Starbucks coffee,96.66,food,Starbucks
+2025-12-02,Starbucks coffee,214.12,food,Starbucks
+2025-12-03,BMTC bus pass monthly,366.79,transport,BMTC
+2025-12-04,Shell petrol Whitefield,279.28,transport,Shell
+2025-12-05,Jio mobile recharge,1555.53,bills,Jio
+2025-12-06,Shell petrol Whitefield,335.0,transport,Shell
+2025-12-07,BWSSB water charges,1068.51,bills,BWSSB
+2025-12-08,Uber to office Koramangala,374.16,transport,Uber
+2025-12-09,Tea stall chai,271.18,food,Tea
+2025-12-10,Swiggy order biryani,150.02,food,Swiggy
+2025-12-11,Nandhana Palace dinner,380.47,food,Nandhana
+2025-12-12,McDonald's Big Mac,310.46,food,McDonald's
+2025-12-13,Local restaurant lunch,365.86,food,Local
+2025-12-14,Metro Namma Bengaluru,285.83,transport,Metro
+2025-12-15,Tea stall chai,388.19,food,Tea
+2025-12-16,BigBasket monthly grocery,564.02,shopping,BigBasket
+2025-12-17,McDonald's Big Mac,167.18,food,McDonald's
+2025-12-18,BESCOM electricity bill,1637.13,bills,BESCOM
+2025-12-19,Nandhana Palace dinner,289.49,food,Nandhana
+2025-12-20,Netflix subscription,806.87,entertainment,Netflix
+2025-12-21,Uber to office Koramangala,293.38,transport,Uber
+2025-12-22,Shell petrol Whitefield,360.24,transport,Shell
+2025-12-23,BWSSB water charges,2021.29,bills,BWSSB
+2025-12-24,Myntra shoes delivery,863.04,shopping,Myntra
+2025-12-25,BWSSB water charges,2232.51,bills,BWSSB
+2025-12-26,Auto rickshaw Marathahalli,360.76,transport,Auto
+2025-12-27,Auto rickshaw Marathahalli,259.81,transport,Auto
+2025-12-28,BESCOM electricity bill,2094.89,bills,BESCOM
+2025-12-29,Auto rickshaw Marathahalli,169.32,transport,Auto
+2025-12-30,BigBasket monthly grocery,1307.87,shopping,BigBasket
+,Breakfast,500.0,Food,
+,Breakfast,500.0,Food,
+,Uber to college,300.0,Transport,
+,Uber to college,200.0,transport,
+,petrol,500.0,transport,
+,Uber Cab Ride,80.0,transport,
+,Decathlon Purchase,500.0,shopping,
+,Amazon Shopping,2000.0,shopping,
+,Netflix Subscription,149.0,entertainment,
+,Reliance Jio Recharge,249.0,bills,
+,Amazon Shopping,2000.0,shopping,
+,Starbucks Coffee,200.0,food,
+,Decathlon Purchase,1000.0,shopping,
+,Decathlon Purchase,500.0,shopping,
+,Ola Bike Ride,80.0,transport,
+,Fuel at Shell Petrol,1000.0,transport,
+,Zomato Restaurant,600.0,food,
+,PVR Cinema Ticket,200.0,entertainment,
+,Zomato Restaurant,500.0,food,
+,PVR Cinema Ticket,200.0,entertainment,
+,PVR Cinema Ticket,300.0,entertainment,
+,Ola Bike Ride,80.0,transport,
+,Starbucks Coffee,250.0,food,
+,Netflix Subscription,199.0,entertainment,
+,Starbucks Coffee,250.0,food,
+,Hotstar Subscription,99.0,entertainment,
+,Ola Bike Ride,80.0,transport,
+,Uber Cab Ride,80.0,transport,
+,Fuel at Shell Petrol,1500.0,transport,
+,Zomato Restaurant,300.0,food,
+,Reliance Jio Recharge,599.0,bills,
+,Zomato Restaurant,300.0,food,
+,Netflix Subscription,149.0,entertainment,
+,Uber Cab Ride,80.0,transport,
+,BESCOM Electricity,1500.0,bills,
+,Fuel at Shell Petrol,1500.0,transport,
+,FedEx Courier,300.0,bills,
+,Decathlon Purchase,1500.0,shopping,
+,Amazon Shopping,1500.0,shopping,
+,Netflix Subscription,199.0,entertainment,
+,Fuel at Shell Petrol,2000.0,transport,
+,FedEx Courier,100.0,bills,
+,Swiggy Food Order,350.0,food,
+,Zomato Restaurant,400.0,food,
+,Fuel at Shell Petrol,500.0,transport,
+,Decathlon Purchase,500.0,shopping,
+,Uber Cab Ride,200.0,transport,
+,Decathlon Purchase,1000.0,shopping,
+,Flipkart Purchase,300.0,shopping,
+,Ola Bike Ride,60.0,transport,
+,Uber Cab Ride,120.0,transport,
+,PVR Cinema Ticket,200.0,entertainment,
+,PVR Cinema Ticket,200.0,entertainment,
+,Reliance Jio Recharge,249.0,bills,
+,Hotstar Subscription,299.0,entertainment,
+,Uber Cab Ride,150.0,transport,
+,BESCOM Electricity,2000.0,bills,
+,Ola Bike Ride,100.0,transport,
+,BESCOM Electricity,2500.0,bills,
+,Netflix Subscription,199.0,entertainment,
+,Flipkart Purchase,300.0,shopping,
+,Uber Cab Ride,120.0,transport,
+,Flipkart Purchase,1800.0,shopping,
+,Swiggy Food Order,350.0,food,
+,Swiggy Food Order,450.0,food,
+,FedEx Courier,300.0,bills,
+,Transfer from Friend,1000.0,income,
+,FedEx Courier,200.0,bills,
+,FedEx Courier,100.0,bills,
+,FedEx Courier,200.0,bills,
+,Reliance Jio Recharge,499.0,bills,
+,Transfer from Friend,2000.0,income,
+,FedEx Courier,100.0,bills,
+,Transfer from Friend,2000.0,income,
+,FedEx Courier,100.0,bills,
+,Starbucks Coffee,250.0,food,
+,Decathlon Purchase,1000.0,shopping,
+,Fuel at Shell Petrol,2000.0,transport,
+,Uber Cab Ride,200.0,transport,
+,Freelance Project Payment,5000.0,income,
+,Zomato Restaurant,300.0,food,
+,Fuel at Shell Petrol,500.0,transport,
+,Refund - Amazon,2000.0,income,
+,FedEx Courier,300.0,bills,
+,Netflix Subscription,199.0,entertainment,
+,PVR Cinema Ticket,200.0,entertainment,
+,Fuel at Shell Petrol,2000.0,transport,
+,Reliance Jio Recharge,249.0,bills,
+,Cashback Received,200.0,income,
+,Starbucks Coffee,200.0,food,
+,Hotstar Subscription,99.0,entertainment,
+,Flipkart Purchase,300.0,shopping,
+,Hotstar Subscription,99.0,entertainment,
+,Starbucks Coffee,200.0,food,
+,Cashback Received,100.0,income,
+,Amazon Shopping,500.0,shopping,
+,Interest Earned,50.0,income,
+,Flipkart Purchase,1800.0,shopping,
+,PVR Cinema Ticket,200.0,entertainment,
+,Ola Bike Ride,80.0,transport,
+,Netflix Subscription,199.0,entertainment,
+,Reliance Jio Recharge,249.0,bills,
+,FedEx Courier,200.0,bills,
+,Interest Earned,50.0,income,
+,Refund - Amazon,500.0,income,
+,Ola Bike Ride,100.0,transport,
+,PVR Cinema Ticket,250.0,entertainment,
+,Netflix Subscription,149.0,entertainment,
+,BESCOM Electricity,2000.0,bills,
+,Bonus Payment,30000.0,income,
+,Swiggy Food Order,350.0,food,
+,Zomato Restaurant,600.0,food,
+,Refund - Amazon,2000.0,income,
+,Uber Cab Ride,120.0,transport,
+,Reliance Jio Recharge,399.0,bills,
+,Swiggy Food Order,550.0,food,
+,Reliance Jio Recharge,399.0,bills,
+,Starbucks Coffee,150.0,food,
+,Freelance Project Payment,10000.0,income,
+,Hotstar Subscription,299.0,entertainment,
+,Flipkart Purchase,1800.0,shopping,
+,Freelance Project Payment,15000.0,income,
+,Interest Earned,200.0,income,
+,Decathlon Purchase,500.0,shopping,
+,Swiggy Food Order,550.0,food,
+,Uber Cab Ride,120.0,transport,
+,Starbucks Coffee,150.0,food,
+,Amazon Shopping,1500.0,shopping,
+,Flipkart Purchase,1200.0,shopping,
+,Fuel at Shell Petrol,1500.0,transport,
+,Swiggy Food Order,350.0,food,
+,BESCOM Electricity,1500.0,bills,
+,Refund - Amazon,2000.0,income,
+,Interest Earned,50.0,income,
+,Freelance Project Payment,15000.0,income,
+,Transfer from Friend,5000.0,income,
+,Flipkart Purchase,1800.0,shopping,
+,Swiggy Food Order,350.0,food,
+,Flipkart Purchase,300.0,shopping,
+,Ola Bike Ride,80.0,transport,
+,Uber Cab Ride,150.0,transport,
+,Decathlon Purchase,1500.0,shopping,
+,Ola Bike Ride,40.0,transport,
+,Decathlon Purchase,1000.0,shopping,
+,Swiggy Food Order,550.0,food,
+,Reliance Jio Recharge,599.0,bills,
+,FedEx Courier,100.0,bills,
+,Reliance Jio Recharge,599.0,bills,
+,Reliance Jio Recharge,399.0,bills,
+,Cashback Received,500.0,income,
+,FedEx Courier,100.0,bills,
+,Zomato Restaurant,400.0,food,
+,Netflix Subscription,149.0,entertainment,
+,Fuel at Shell Petrol,500.0,transport,
+,Decathlon Purchase,500.0,shopping,
+,Bonus Payment,20000.0,income,
+,Flipkart Purchase,1200.0,shopping,
+,Swiggy Food Order,550.0,food,
+,Reliance Jio Recharge,399.0,bills,
+,Netflix Subscription,199.0,entertainment,
+,BESCOM Electricity,2500.0,bills,
+,Uber Cab Ride,120.0,transport,
+,Swiggy Food Order,450.0,food,
+,Uber Cab Ride,150.0,transport,
+,Salary Deposit,60000.0,income,
+,FedEx Courier,100.0,bills,
+,PVR Cinema Ticket,250.0,entertainment,
+,Uber Cab Ride,200.0,transport,
+,Interest Earned,200.0,income,
+,Netflix Subscription,499.0,entertainment,
+,Reliance Jio Recharge,249.0,bills,
+,Fuel at Shell Petrol,500.0,transport,
+,Netflix Subscription,199.0,entertainment,
+,FedEx Courier,300.0,bills,
+,Starbucks Coffee,250.0,food,
+,Swiggy Food Order,450.0,food,
+,Amazon Shopping,1000.0,shopping,
+,Flipkart Purchase,800.0,shopping,
+,Salary Deposit,60000.0,income,
+,Netflix Subscription,499.0,entertainment,
+,Refund - Amazon,1000.0,income,
+,Zomato Restaurant,400.0,food,
+,Bonus Payment,20000.0,income,
+,Ola Bike Ride,80.0,transport,
+,Zomato Restaurant,500.0,food,
+,Hotstar Subscription,99.0,entertainment,
+,Refund - Amazon,1000.0,income,
+,Uber Cab Ride,150.0,transport,
+,Netflix Subscription,149.0,entertainment,
+,Transfer from Friend,1000.0,income,
+,Cashback Received,200.0,income,
+,Refund - Amazon,2000.0,income,
+,Amazon Shopping,1000.0,shopping,
+,Decathlon Purchase,1500.0,shopping,
+,Decathlon Purchase,1000.0,shopping,
+,Amazon Shopping,1000.0,shopping,
+,Swiggy Food Order,350.0,food,
+,BESCOM Electricity,1500.0,bills,
+,PVR Cinema Ticket,200.0,entertainment,
+,Ola Bike Ride,100.0,transport,
+,Netflix Subscription,499.0,entertainment,
+,Amazon Shopping,1500.0,shopping,
+,Fuel at Shell Petrol,500.0,transport,
+,Bonus Payment,30000.0,income,
+,Reliance Jio Recharge,599.0,bills,
+,Decathlon Purchase,1500.0,shopping,
+,Interest Earned,100.0,income,
+,Amazon Shopping,2000.0,shopping,
+,Freelance Project Payment,15000.0,income,
+,Transfer from Friend,1000.0,income,
+,Netflix Subscription,499.0,entertainment,
+,Starbucks Coffee,250.0,food,
+,Starbucks Coffee,250.0,food,
+,Hotstar Subscription,99.0,entertainment,
+,Flipkart Purchase,1200.0,shopping,
+,BESCOM Electricity,2500.0,bills,
+,Flipkart Purchase,1200.0,shopping,
+,Flipkart Purchase,1200.0,shopping,
+,Cashback / Refund,200.0,income,
+,PVR Cinema Ticket,200.0,entertainment,
+,Netflix Subscription,149.0,entertainment,
+,Starbucks Coffee,200.0,food,
+,Decathlon Purchase,1000.0,shopping,
+,Netflix Subscription,149.0,entertainment,
+,Hotstar Subscription,99.0,entertainment,
+,Decathlon Purchase,1000.0,shopping,
+,BESCOM Electricity,2000.0,bills,
+,Amazon Shopping,1000.0,shopping,
+,PVR Cinema Ticket,200.0,entertainment,
+,Swiggy Food Order,450.0,food,
+,FedEx Courier,200.0,bills,
+,Uber Cab Ride,200.0,transport,
+,Ola Bike Ride,60.0,transport,
+,PVR Cinema Ticket,200.0,entertainment,
+,Amazon Shopping,2000.0,shopping,
+,Ola Bike Ride,40.0,transport,
+,Hotstar Subscription,99.0,entertainment,
+,Cashback / Refund,500.0,income,
+,Flipkart Purchase,300.0,shopping,
+,Swiggy Food Order,450.0,food,
+,Reliance Jio Recharge,399.0,bills,
+,Reliance Jio Recharge,499.0,bills,
+,shirt,500.0,shopping,
+,pen,10.0,other,
+,Ola Bike Ride,60.0,transport,
+,Flipkart Purchase,1800.0,shopping,
+,BESCOM Electricity,2000.0,bills,
+,Reliance Jio Recharge,399.0,bills,
+,Ola Bike Ride,60.0,transport,
+,Uber Cab Ride,200.0,transport,
+,Uber Cab Ride,150.0,transport,
+,Amazon Shopping,1000.0,shopping,
+,FedEx Courier,300.0,bills,
+,Swiggy Food Order,450.0,food,
+,shirt,600.0,shopping,

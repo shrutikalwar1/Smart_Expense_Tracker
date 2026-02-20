@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="glass-card">
+    <h2>🤖 Model Architecture & Training</h2>
+    
+    <div style="margin: 20px 0; padding: 15px; background-color: #e3f2fd; border-radius: 8px;">
+        <h3>❓ Question 1: Training on External Data</h3>
+        <p><strong style="color: #4CAF50;">✅ YES, this is CORRECT and standard practice!</strong></p>
+        <ul>
+            <li><strong>Training Data:</strong> <code>real_person_expenses_1200.csv</code> (1,200 records)</li>
+            <li><strong>Prediction Target:</strong> New user expenses from database</li>
+            <li><strong>Pattern Name:</strong> Transfer Learning</li>
+            <li><strong>Real-world Example:</strong> ChatGPT trained on internet data, but used for user queries</li>
+            <li><strong>Benefit:</strong> Larger dataset = better model accuracy</li>
+        </ul>
+    </div>
+
+    <div style="margin: 20px 0; padding: 15px; background-color: #fff3e0; border-radius: 8px;">
+        <h3>❓ Question 2: Retraining on New User Data</h3>
+        <p><strong style="color: #ff9800;">❌ NO - Category classifier does NOT retrain</strong></p>
+        
+        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+            <thead>
+                <tr style="background-color: #f5f5f5;">
+                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Component</th>
+                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Retrains?</th>
+                    <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Category Classification</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">❌ NO</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Static model, uses pre-trained weights</td>
+                </tr>
+                <tr style="background-color: #f9f9f9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Budget Forecast</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">✅ YES</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Updates monthly predictions with user data</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Amount Scaling</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">❌ NO</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Uses training dataset statistics</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="margin: 20px 0; padding: 15px; background-color: #f3e5f5; border-radius: 8px;">
+        <h3>🏗️ Model Training Flow</h3>
+        <pre style="background: white; padding: 10px; border-radius: 5px;">
+external_data.csv (1,200 records)
+         ↓
+    [TRAINING]
+         ↓
+[category_model_final.pkl] ← SAVED (never changes)
+         ↓
+    [PREDICTION] ← Applied to each user expense
+         ↓
+    [DATABASE] ← Predictions stored
+        </pre>
+    </div>
+
+    <div style="margin: 20px 0; padding: 15px; background-color: #e8f5e9; border-radius: 8px;">
+        <h3>✅ Why This Approach is Professional</h3>
+        <ul style="list-style-type: none; padding: 0;">
+            <li>✓ Large training dataset → Better accuracy</li>
+            <li>✓ Pre-trained model → Applied to new data (Transfer Learning)</li>
+            <li>✓ Consistent predictions → No overfitting</li>
+            <li>✓ Fast inference → No retraining overhead</li>
+            <li>✓ Real-world approach → How banks & fintech apps work</li>
+        </ul>
+    </div>
+
+    <div style="margin-top: 30px; padding: 15px; background-color: #e0f2f1; border-radius: 8px;">
+        <h3>📊 Data Statistics</h3>
+        <p><strong>Training Data (External):</strong></p>
+        <ul>
+            <li>Source: <code>real_person_expenses_1200.csv</code></li>
+            <li>Records: 1,200 expenses</li>
+            <li>Model Type: RandomForest + TF-IDF Vectorizer</li>
+        </ul>
+        <p><strong>User Data (Database):</strong></p>
+        <ul>
+            <li>Source: <code>expenses.db</code> (SQLite)</li>
+            <li>Stored in: Expense table</li>
+            <li>Predictions: Category auto-filled using trained model</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

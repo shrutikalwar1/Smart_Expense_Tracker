@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="glass-card">
+    <h2 class="section-header">📋 All Expenses</h2>
+    
+    <div class="expense-table">
+        <table>
+            <thead>
+                <tr class="table-header">
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if expenses %}
+                    {% for exp in expenses %}
+                    <tr>
+                        <td style="font-weight: 500;">{{ exp.description[:50] }}</td>
+                        <td style="font-weight: 600; color: #667eea;">₹{{ "%.2f"|format(exp.amount) }}</td>
+                        <td>
+                            <span style="background: rgba(102,126,234,0.15); color: #667eea; padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600;">
+                                {{ exp.category|upper }}
+                            </span>
+                        </td>
+                        <td style="font-size: 13px; color: var(--text-secondary);">{{ exp.date.strftime('%Y-%m-%d %H:%M') }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="4" style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                        No expenses recorded yet. Start adding expenses to track your spending! 💰
+                    </td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    
+    {% if expenses %}
+    <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid var(--border-color); display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+        <div style="text-align: center;">
+            <div style="font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">Total Expenses</div>
+            <div style="font-size: 24px; font-weight: 800; color: #667eea; margin-top: 6px;">₹{{ "%.2f"|format(expenses|map(attribute='amount')|sum) }}</div>
+        </div>
+        <div style="text-align: center;">
+            <div style="font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">Average</div>
+            <div style="font-size: 24px; font-weight: 800; color: #4CAF50; margin-top: 6px;">₹{{ "%.2f"|format((expenses|map(attribute='amount')|sum) / expenses|length) }}</div>
+        </div>
+        <div style="text-align: center;">
+            <div style="font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px;">Count</div>
+            <div style="font-size: 24px; font-weight: 800; color: #f5576c; margin-top: 6px;">{{ expenses|length }}</div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
