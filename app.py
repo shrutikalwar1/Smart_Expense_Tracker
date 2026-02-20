@@ -663,6 +663,118 @@ def months():
     return jsonify(monthly_totals)
 
 
+def _combined_expense_dataframe():
+    """Return combined CSV + user expense data with normalized date/category/amount columns."""
+    df_csv = pd.read_csv('real_person_expenses_1200.csv')
+    if 'date' not in df_csv.columns:
+        df_csv['date'] = pd.date_range(end=datetime.utcnow(), periods=len(df_csv), freq='D')
+
+    csv_cols = ['date', 'description', 'amount', 'category']
+    df_csv = df_csv.reindex(columns=csv_cols)
+
+    user_df = pd.read_sql(Expense.query.statement, db.engine)
+    if user_df.empty:
+        user_df = pd.DataFrame(columns=csv_cols)
+    else:
+        user_df = user_df.reindex(columns=csv_cols)
+
+    combined_df = pd.concat([df_csv, user_df], ignore_index=True)
+    combined_df['date'] = pd.to_datetime(combined_df['date'], errors='coerce')
+    combined_df['amount'] = pd.to_numeric(combined_df['amount'], errors='coerce').fillna(0)
+    combined_df['category'] = combined_df['category'].astype(str).str.lower().str.strip()
+    combined_df = combined_df.dropna(subset=['date'])
+    combined_df = combined_df[combined_df['category'] != 'income']
+    return combined_df
+
+
+@app.route('/api/trend-insights')
+def trend_insights():
+    """Week-over-week and month-over-month trends + category performance for linked charts."""
+    combined_df = _combined_expense_dataframe()
+    if combined_df.empty:
+        return jsonify({
+            'wow': {'current': 0, 'previous': 0, 'growth_rate': 0},
+            'mom': {'current': 0, 'previous': 0, 'growth_rate': 0},
+            'months': [],
+            'category_growth': [],
+            'category_series': {}
+        })
+
+    latest_date = combined_df['date'].max().normalize()
+
+    current_week_start = latest_date - timedelta(days=6)
+    prev_week_start = current_week_start - timedelta(days=7)
+    prev_week_end = current_week_start - timedelta(days=1)
+
+    current_week = combined_df[(combined_df['date'] >= current_week_start) & (combined_df['date'] <= latest_date)]['amount'].sum()
+    previous_week = combined_df[(combined_df['date'] >= prev_week_start) & (combined_df['date'] <= prev_week_end)]['amount'].sum()
+
+    combined_df['month_period'] = combined_df['date'].dt.to_period('M')
+    monthly_totals = combined_df.groupby('month_period')['amount'].sum().sort_index()
+
+    current_month = float(monthly_totals.iloc[-1]) if len(monthly_totals) >= 1 else 0.0
+    previous_month = float(monthly_totals.iloc[-2]) if len(monthly_totals) >= 2 else 0.0
+
+    monthly_cat = combined_df.groupby(['month_period', 'category'])['amount'].sum().unstack(fill_value=0).sort_index()
+    recent_months = monthly_cat.tail(6)
+
+    category_growth = []
+    if len(recent_months.index) >= 2:
+        prev_idx = recent_months.index[-2]
+        curr_idx = recent_months.index[-1]
+        for cat in recent_months.columns:
+            prev_val = float(recent_months.loc[prev_idx, cat])
+            curr_val = float(recent_months.loc[curr_idx, cat])
+            delta = curr_val - prev_val
+            growth_pct = (delta / prev_val * 100) if prev_val > 0 else (100.0 if curr_val > 0 else 0.0)
+            category_growth.append({
+                'category': cat,
+                'previous': round(prev_val, 2),
+                'current': round(curr_val, 2),
+                'change': round(delta, 2),
+                'growth_rate': round(growth_pct, 2)
+            })
+    else:
+        for cat in recent_months.columns:
+            curr_val = float(recent_months.iloc[-1][cat]) if len(recent_months.index) else 0.0
+            category_growth.append({
+                'category': cat,
+                'previous': 0,
+                'current': round(curr_val, 2),
+                'change': round(curr_val, 2),
+                'growth_rate': 100.0 if curr_val > 0 else 0.0
+            })
+
+    category_growth = sorted(category_growth, key=lambda x: abs(x['growth_rate']), reverse=True)
+
+    month_labels = [str(m) for m in recent_months.index]
+    category_series = {
+        cat: [round(float(v), 2) for v in recent_months[cat].tolist()]
+        for cat in recent_months.columns
+    }
+
+    def pct_growth(current, previous):
+        if previous <= 0:
+            return 100.0 if current > 0 else 0.0
+        return round(((current - previous) / previous) * 100, 2)
+
+    return jsonify({
+        'wow': {
+            'current': round(float(current_week), 2),
+            'previous': round(float(previous_week), 2),
+            'growth_rate': pct_growth(float(current_week), float(previous_week))
+        },
+        'mom': {
+            'current': round(current_month, 2),
+            'previous': round(previous_month, 2),
+            'growth_rate': pct_growth(current_month, previous_month)
+        },
+        'months': month_labels,
+        'category_growth': category_growth,
+        'category_series': category_series
+    })
+
+
 
 
 
