@@ -167,6 +167,27 @@ function getThemePalette() {
     };
 }
 
+function getCurrencyAxisOptions(themePalette) {
+    return {
+        beginAtZero: true,
+        ticks: {
+            callback: value => '₹' + Number(value).toLocaleString('en-IN'),
+            color: themePalette.tickColor
+        },
+        grid: { color: themePalette.gridColor }
+    };
+}
+
+function getPercentAxisOptions(themePalette) {
+    return {
+        ticks: {
+            color: themePalette.tickColor,
+            callback: value => `${value}%`
+        },
+        grid: { color: themePalette.gridColor }
+    };
+}
+
 async function loadCharts() {
     try {
         const [catRes, monthRes, datasetRes, trendRes] = await Promise.all([
@@ -266,10 +287,9 @@ async function loadCharts() {
             options: {
                 responsive: true,
                 scales: { 
-                    y: { 
-                        beginAtZero: true,
-                        grid: { color: themePalette.gridColor, drawBorder: false },
-                        ticks: { callback: v => '₹' + v.toLocaleString(), color: themePalette.tickColor }
+                    y: {
+                        ...getCurrencyAxisOptions(themePalette),
+                        grid: { color: themePalette.gridColor, drawBorder: false }
                     },
                     x: {
                         grid: { display: false },
@@ -361,11 +381,7 @@ async function loadCharts() {
             options: {
                 responsive: true,
                 scales: {
-                    y: { 
-                        beginAtZero: true,
-                        ticks: { callback: v => '₹' + v.toLocaleString(), color: themePalette.tickColor },
-                        grid: { color: themePalette.gridColor }
-                    }
+                    y: getCurrencyAxisOptions(themePalette)
                 },
                 plugins: {
                     legend: { display: false },
@@ -415,9 +431,8 @@ async function loadCharts() {
                 responsive: true,
                 scales: {
                     y: {
-                        beginAtZero: true,
-                        ticks: { stepSize: 1, color: themePalette.tickColor },
-                        grid: { color: themePalette.gridColor }
+                        ...getCurrencyAxisOptions(themePalette),
+                        ticks: { stepSize: 1, color: themePalette.tickColor }
                     }
                 },
                 plugins: {
@@ -487,10 +502,7 @@ function renderCategoryPerformanceChart(trendData) {
         options: {
             responsive: true,
             scales: {
-                y: {
-                    ticks: { color: themePalette.tickColor, callback: value => `${value}%` },
-                    grid: { color: themePalette.gridColor }
-                }
+                y: getPercentAxisOptions(themePalette)
             },
             plugins: {
                 legend: { display: false },
@@ -545,11 +557,7 @@ function renderCategoryDrilldownChart(category, trendData) {
         options: {
             responsive: true,
             scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: { callback: value => '₹' + Number(value).toLocaleString('en-IN'), color: themePalette.tickColor },
-                    grid: { color: themePalette.gridColor }
-                }
+                y: getCurrencyAxisOptions(themePalette)
             },
             plugins: {
                 legend: { display: false },
