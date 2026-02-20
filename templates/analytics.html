@@ -99,6 +99,43 @@
     </div>
 </div>
 
+<!-- ====== LINKED TREND + CATEGORY PERFORMANCE ====== -->
+<div class="glass-card">
+    <h2 class="section-header">🔗 Dynamic Trend Intelligence</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 16px;">
+        <div style="background: rgba(79, 172, 254, 0.15); border: 1px solid rgba(79, 172, 254, 0.3); border-radius: 12px; padding: 14px;">
+            <div style="font-size: 12px; opacity: 0.8;">Week-over-Week</div>
+            <div style="font-size: 24px; font-weight: 800;" id="wowGrowth">0%</div>
+            <div style="font-size: 11px; opacity: 0.75;" id="wowDetail">Current ₹0 vs Previous ₹0</div>
+        </div>
+        <div style="background: rgba(240, 147, 251, 0.15); border: 1px solid rgba(240, 147, 251, 0.3); border-radius: 12px; padding: 14px;">
+            <div style="font-size: 12px; opacity: 0.8;">Month-over-Month</div>
+            <div style="font-size: 24px; font-weight: 800;" id="momGrowth">0%</div>
+            <div style="font-size: 11px; opacity: 0.75;" id="momDetail">Current ₹0 vs Previous ₹0</div>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <div class="chart-card" style="grid-column: span 1;">
+            <h3 style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 20px;">📊</span>
+                <span>Category Performance (MoM Growth)</span>
+            </h3>
+            <canvas id="categoryPerformanceChart"></canvas>
+            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; text-align: center; opacity: 0.8;">Click a category bar to drill down into trend details</div>
+        </div>
+
+        <div class="chart-card" style="grid-column: span 1;">
+            <h3 style="display: flex; align-items: center; gap: 8px;">
+                <span style="font-size: 20px;">🧭</span>
+                <span id="categoryDrillTitle">Category Drilldown Trend</span>
+            </h3>
+            <canvas id="categoryDrilldownChart"></canvas>
+            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; text-align: center; opacity: 0.8;" id="drilldownHelp">Select a category to compare month-wise performance</div>
+        </div>
+    </div>
+</div>
+
 <!-- ====== BUDGET FORECAST SECTION (PREMIUM) ====== -->
 <div class="forecast-card">
     <div class="forecast-header">
@@ -119,18 +156,21 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 <script>
 const chartInstances = {};
+let trendInsightsCache = null;
 
 async function loadCharts() {
     try {
-        const [catRes, monthRes, datasetRes] = await Promise.all([
+        const [catRes, monthRes, datasetRes, trendRes] = await Promise.all([
             fetch('/api/categories'),
             fetch('/api/months'),
-            fetch('/api/dataset-stats')
+            fetch('/api/dataset-stats'),
+            fetch('/api/trend-insights')
         ]);
         
         const categories = await catRes.json();
         const months = await monthRes.json();
         const stats = await datasetRes.json();
+        trendInsightsCache = await trendRes.json();
         
         // Update stat cards
         const totalAmount = Object.values(categories).reduce((a, b) => a + b, 0);
@@ -374,12 +414,138 @@ async function loadCharts() {
             }
         });
         
+        loadTrendInsights(trendInsightsCache);
+
         // Load budget prediction
         await loadBudgetPrediction();
         
     } catch(e) {
         console.error('Chart loading failed:', e);
     }
+}
+
+
+
+function growthColor(value) {
+    return value >= 0 ? 'rgba(72, 187, 120, 0.95)' : 'rgba(245, 101, 101, 0.95)';
+}
+
+function formatGrowth(value) {
+    const sign = value > 0 ? '+' : '';
+    return `${sign}${value.toFixed(1)}%`;
+}
+
+function loadTrendInsights(trendData) {
+    if (!trendData) return;
+
+    const wow = trendData.wow || { current: 0, previous: 0, growth_rate: 0 };
+    const mom = trendData.mom || { current: 0, previous: 0, growth_rate: 0 };
+
+    document.getElementById('wowGrowth').textContent = formatGrowth(wow.growth_rate || 0);
+    document.getElementById('wowGrowth').style.color = (wow.growth_rate || 0) >= 0 ? '#48bb78' : '#f56565';
+    document.getElementById('wowDetail').textContent = `Current ₹${Math.round(wow.current || 0).toLocaleString('en-IN')} vs Previous ₹${Math.round(wow.previous || 0).toLocaleString('en-IN')}`;
+
+    document.getElementById('momGrowth').textContent = formatGrowth(mom.growth_rate || 0);
+    document.getElementById('momGrowth').style.color = (mom.growth_rate || 0) >= 0 ? '#48bb78' : '#f56565';
+    document.getElementById('momDetail').textContent = `Current ₹${Math.round(mom.current || 0).toLocaleString('en-IN')} vs Previous ₹${Math.round(mom.previous || 0).toLocaleString('en-IN')}`;
+
+    renderCategoryPerformanceChart(trendData);
+}
+
+function renderCategoryPerformanceChart(trendData) {
+    const growthRows = (trendData.category_growth || []).slice(0, 8);
+    const labels = growthRows.map(row => row.category.charAt(0).toUpperCase() + row.category.slice(1));
+    const growthValues = growthRows.map(row => row.growth_rate || 0);
+
+    if (chartInstances.categoryPerformanceChart) chartInstances.categoryPerformanceChart.destroy();
+    chartInstances.categoryPerformanceChart = new Chart(document.getElementById('categoryPerformanceChart'), {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [{
+                label: 'MoM Growth %',
+                data: growthValues,
+                backgroundColor: growthValues.map(growthColor),
+                borderRadius: 10,
+                borderSkipped: false
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    ticks: { callback: value => `${value}%` },
+                    grid: { color: 'rgba(255,255,255,0.05)' }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: ctx => {
+                            const row = growthRows[ctx.dataIndex];
+                            return `${formatGrowth(ctx.parsed.y)} | ₹${Math.round(row.current).toLocaleString('en-IN')} vs ₹${Math.round(row.previous).toLocaleString('en-IN')}`;
+                        }
+                    }
+                }
+            },
+            onClick: (_event, elements) => {
+                if (!elements.length) return;
+                const idx = elements[0].index;
+                const selectedCategory = growthRows[idx].category;
+                renderCategoryDrilldownChart(selectedCategory, trendData);
+            }
+        }
+    });
+
+    if (growthRows.length > 0) {
+        renderCategoryDrilldownChart(growthRows[0].category, trendData);
+    }
+}
+
+function renderCategoryDrilldownChart(category, trendData) {
+    const months = trendData.months || [];
+    const series = (trendData.category_series || {})[category] || [];
+    const titleCategory = category.charAt(0).toUpperCase() + category.slice(1);
+
+    document.getElementById('categoryDrillTitle').textContent = `${titleCategory} Trend Drilldown`;
+    document.getElementById('drilldownHelp').textContent = `Showing ${titleCategory} spend across recent months`;
+
+    if (chartInstances.categoryDrilldownChart) chartInstances.categoryDrilldownChart.destroy();
+    chartInstances.categoryDrilldownChart = new Chart(document.getElementById('categoryDrilldownChart'), {
+        type: 'line',
+        data: {
+            labels: months,
+            datasets: [{
+                label: `${titleCategory} spend`,
+                data: series,
+                borderColor: 'rgba(79, 172, 254, 1)',
+                backgroundColor: 'rgba(79, 172, 254, 0.2)',
+                tension: 0.35,
+                fill: true,
+                pointRadius: 4,
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { callback: value => '₹' + Number(value).toLocaleString('en-IN') },
+                    grid: { color: 'rgba(255,255,255,0.05)' }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: ctx => `₹${Math.round(ctx.parsed.y).toLocaleString('en-IN')}`
+                    }
+                }
+            }
+        }
+    });
 }
 
 async function loadBudgetPrediction() {
