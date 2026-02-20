@@ -153,7 +153,6 @@
     <div id="budgetTotal" style="text-align: center; font-size: 32px; font-weight: 800; color: #e5e0d9; background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(240, 147, 251, 0.3) 100%); padding: 26px; border-radius: 12px; border: 1px solid rgba(102, 126, 234, 0.2);"></div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 <script>
 const chartInstances = {};
 let trendInsightsCache = null;
@@ -628,7 +627,7 @@ async function refreshBudgetPrediction() {
         btn.textContent = '⏳ Updating...';
         btn.disabled = true;
         
-        const res = await fetch('/api/retrain-budget');
+        await fetch('/api/retrain-budget');
         await loadBudgetPrediction();
         
         btn.textContent = '✅ Updated!';
