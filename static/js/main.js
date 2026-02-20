@@ -2,18 +2,29 @@
 // THEME TOGGLE
 // ==========================================
 const toggleBtn = document.querySelector('.theme-toggle');
+const toggleIcon = document.querySelector('.theme-toggle__icon');
+const toggleText = document.querySelector('.theme-toggle__text');
 const currentTheme = localStorage.getItem('theme') || 'light';
+
 document.documentElement.setAttribute('data-theme', currentTheme);
+
+function updateThemeToggle(theme) {
+    if (!toggleBtn) return;
+    if (toggleIcon) toggleIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    if (toggleText) toggleText.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
+    toggleBtn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+}
 
 if (toggleBtn) {
     toggleBtn.addEventListener('click', () => {
         const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
-        toggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        updateThemeToggle(theme);
+        window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme } }));
     });
-    
-    toggleBtn.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+
+    updateThemeToggle(currentTheme);
 }
 
 // ==========================================
