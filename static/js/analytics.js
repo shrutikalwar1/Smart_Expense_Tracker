@@ -1,165 +1,37 @@
-{% extends "base.html" %}
-{% block content %}
-
-<!-- ====== PREMIUM ANALYTICS HEADER STATS ====== -->
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
-    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 28px; border-radius: 16px; color: white; box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);">
-        <div style="font-size: 12px; opacity: 0.85; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 12px;">💰 Total Spent</div>
-        <div style="font-size: 36px; font-weight: 900; margin-bottom: 8px;" id="totalExpenses">₹0</div>
-        <div style="font-size: 11px; opacity: 0.8;">All-time spending</div>
-    </div>
-    
-    <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 28px; border-radius: 16px; color: white; box-shadow: 0 8px 32px rgba(245, 87, 108, 0.3);">
-        <div style="font-size: 12px; opacity: 0.85; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 12px;">📊 Avg Transaction</div>
-        <div style="font-size: 36px; font-weight: 900; margin-bottom: 8px;" id="avgTransaction">₹0</div>
-        <div style="font-size: 11px; opacity: 0.8;">Per transaction</div>
-    </div>
-    
-    <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); padding: 28px; border-radius: 16px; color: white; box-shadow: 0 8px 32px rgba(0, 242, 254, 0.3);">
-        <div style="font-size: 12px; opacity: 0.85; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 12px;">🔢 Transactions</div>
-        <div style="font-size: 36px; font-weight: 900; margin-bottom: 8px;" id="totalTransactions">0</div>
-        <div style="font-size: 11px; opacity: 0.8;">Total records</div>
-    </div>
-    
-    <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); padding: 28px; border-radius: 16px; color: white; box-shadow: 0 8px 32px rgba(250, 112, 154, 0.3);">
-        <div style="font-size: 12px; opacity: 0.85; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 12px;">🏆 Top Category</div>
-        <div style="font-size: 36px; font-weight: 900; margin-bottom: 8px;" id="topCategory">Food</div>
-        <div style="font-size: 11px; opacity: 0.8;">Leading category</div>
-    </div>
-</div>
-
-<!-- ====== PRIMARY ANALYTICS CARDS ====== -->
-<div class="glass-card">
-    <h2 class="section-header">📊 Visual Analytics</h2>
-    
-    <div class="chart-container">
-        <!-- Spending Distribution Pie -->
-        <div class="chart-card" style="grid-column: span 1;">
-            <h3 style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 20px;">🎯</span>
-                <span>Category Distribution</span>
-            </h3>
-            <canvas id="categoryChart"></canvas>
-            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; text-align: center; opacity: 0.8;">Shows your spending across all categories</div>
-        </div>
-        
-        <!-- Spending Trend Area Chart -->
-        <div class="chart-card" style="grid-column: span 1;">
-            <h3 style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 20px;">📈</span>
-                <span>Spending Trends</span>
-            </h3>
-            <canvas id="monthChart"></canvas>
-            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; text-align: center; opacity: 0.8;">Monthly spending evolution</div>
-        </div>
-    </div>
-</div>
-
-<!-- ====== DETAILED BREAKDOWN ====== -->
-<div class="glass-card">
-    <h2 class="section-header">💡 Deep Insights</h2>
-    
-    <div class="chart-container">
-        <!-- Top Spenders -->
-        <div class="chart-card" style="grid-column: span 1;">
-            <h3 style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 20px;">🥇</span>
-                <span>Top Spending Categories</span>
-            </h3>
-            <canvas id="topCategoriesChart"></canvas>
-            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; text-align: center; opacity: 0.8;">Your biggest expense drivers</div>
-        </div>
-    </div>
-</div>
-
-<!-- ====== PERFORMANCE METRICS ====== -->
-<div class="glass-card">
-    <h2 class="section-header">⚡ Performance Analytics</h2>
-    
-    <div class="chart-container">
-        <!-- Daily Average Combo Chart -->
-        <div class="chart-card" style="grid-column: span 1;">
-            <h3 style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 20px;">📅</span>
-                <span>Average Spending Levels</span>
-            </h3>
-            <canvas id="dailyAverageChart"></canvas>
-            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; text-align: center; opacity: 0.8;">Daily, weekly, and monthly averages</div>
-        </div>
-        
-        <!-- Cumulative Spending Distribution -->
-        <div class="chart-card" style="grid-column: span 1;">
-            <h3 style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 20px;">📊</span>
-                <span>Spending Distribution</span>
-            </h3>
-            <canvas id="distributionChart"></canvas>
-            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; text-align: center; opacity: 0.8;">Amount ranges across all categories</div>
-        </div>
-    </div>
-</div>
-
-<!-- ====== LINKED TREND + CATEGORY PERFORMANCE ====== -->
-<div class="glass-card">
-    <h2 class="section-header">🔗 Dynamic Trend Intelligence</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 16px;">
-        <div style="background: rgba(79, 172, 254, 0.15); border: 1px solid rgba(79, 172, 254, 0.3); border-radius: 12px; padding: 14px;">
-            <div style="font-size: 12px; opacity: 0.8;">Week-over-Week</div>
-            <div style="font-size: 24px; font-weight: 800;" id="wowGrowth">0%</div>
-            <div style="font-size: 11px; opacity: 0.75;" id="wowDetail">Current ₹0 vs Previous ₹0</div>
-        </div>
-        <div style="background: rgba(240, 147, 251, 0.15); border: 1px solid rgba(240, 147, 251, 0.3); border-radius: 12px; padding: 14px;">
-            <div style="font-size: 12px; opacity: 0.8;">Month-over-Month</div>
-            <div style="font-size: 24px; font-weight: 800;" id="momGrowth">0%</div>
-            <div style="font-size: 11px; opacity: 0.75;" id="momDetail">Current ₹0 vs Previous ₹0</div>
-        </div>
-    </div>
-
-    <div class="chart-container">
-        <div class="chart-card" style="grid-column: span 1;">
-            <h3 style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 20px;">📊</span>
-                <span>Category Performance (MoM Growth)</span>
-            </h3>
-            <canvas id="categoryPerformanceChart"></canvas>
-            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; text-align: center; opacity: 0.8;">Click a category bar to drill down into trend details</div>
-        </div>
-
-        <div class="chart-card" style="grid-column: span 1;">
-            <h3 style="display: flex; align-items: center; gap: 8px;">
-                <span style="font-size: 20px;">🧭</span>
-                <span id="categoryDrillTitle">Category Drilldown Trend</span>
-            </h3>
-            <canvas id="categoryDrilldownChart"></canvas>
-            <div style="font-size: 11px; color: var(--text-secondary); margin-top: 12px; text-align: center; opacity: 0.8;" id="drilldownHelp">Select a category to compare month-wise performance</div>
-        </div>
-    </div>
-</div>
-
-<!-- ====== BUDGET FORECAST SECTION (PREMIUM) ====== -->
-<div class="forecast-card">
-    <div class="forecast-header">
-        <h3 style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 24px;">🔮</span>
-            <span>Next Month Budget Forecast (AI Powered)</span>
-        </h3>
-        <button class="forecast-btn" id="refreshBtn" onclick="refreshBudgetPrediction()">🔄 Refresh Prediction</button>
-    </div>
-    
-    <div id="predictionInfo" style="font-size: 13px; margin-bottom: 20px; opacity: 0.95; background: linear-gradient(135deg, rgba(79, 172, 254, 0.2) 0%, rgba(0, 242, 254, 0.2) 100%); padding: 14px 16px; border-radius: 10px; border-left: 4px solid #4facfe; color: #e5e0d9;"></div>
-    
-    <div id="budgetCards" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 25px;"></div>
-    
-    <div id="budgetTotal" style="text-align: center; font-size: 32px; font-weight: 800; color: #e5e0d9; background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(240, 147, 251, 0.3) 100%); padding: 26px; border-radius: 12px; border: 1px solid rgba(102, 126, 234, 0.2);"></div>
-</div>
-
-
-<script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
-=======
-<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-<script>
 const chartInstances = {};
 let trendInsightsCache = null;
+
+function getThemePalette() {
+    const theme = document.documentElement.getAttribute('data-theme') || 'light';
+    return {
+        isDark: theme === 'dark',
+        tickColor: theme === 'dark' ? '#cbd5e1' : '#334155',
+        gridColor: theme === 'dark' ? 'rgba(255,255,255,0.08)' : 'rgba(15,23,42,0.1)',
+        tooltipBg: theme === 'dark' ? 'rgba(15, 23, 42, 0.92)' : 'rgba(15, 23, 42, 0.85)'
+    };
+}
+
+function getCurrencyAxisOptions(themePalette) {
+    return {
+        beginAtZero: true,
+        ticks: {
+            callback: value => '₹' + Number(value).toLocaleString('en-IN'),
+            color: themePalette.tickColor
+        },
+        grid: { color: themePalette.gridColor }
+    };
+}
+
+function getPercentAxisOptions(themePalette) {
+    // Keep this theme-aware to avoid merge regressions to hardcoded grid/tick colors.
+    return {
+        ticks: {
+            color: themePalette.tickColor,
+            callback: value => `${value}%`
+        },
+        grid: { color: themePalette.gridColor }
+    };
+}
 
 async function loadCharts() {
     try {
@@ -187,6 +59,8 @@ async function loadCharts() {
             document.getElementById('avgTransaction').textContent = '₹' + (totalAmount / stats.user_transactions).toLocaleString('en-IN', {maximumFractionDigits: 0});
         }
         
+        const themePalette = getThemePalette();
+
         // ===== CHART 1: ELEGANT DOUGHNUT CHART =====
         if (chartInstances.categoryChart) chartInstances.categoryChart.destroy();
         chartInstances.categoryChart = new Chart(document.getElementById('categoryChart'), {
@@ -258,19 +132,19 @@ async function loadCharts() {
             options: {
                 responsive: true,
                 scales: { 
-                    y: { 
-                        beginAtZero: true,
-                        grid: { color: 'rgba(255,255,255,0.05)', drawBorder: false },
-                        ticks: { callback: v => '₹' + v.toLocaleString() }
+                    y: {
+                        ...getCurrencyAxisOptions(themePalette),
+                        grid: { color: themePalette.gridColor, drawBorder: false }
                     },
                     x: {
-                        grid: { display: false }
+                        grid: { display: false },
+                        ticks: { color: themePalette.tickColor }
                     }
                 },
                 plugins: { 
                     legend: { display: true, labels: { font: { size: 12, weight: 600 } } },
                     tooltip: { 
-                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        backgroundColor: themePalette.tooltipBg,
                         padding: 12,
                         callbacks: { label: ctx => `₹${ctx.parsed.y.toLocaleString()}` }
                     }
@@ -311,8 +185,8 @@ async function loadCharts() {
                 scales: { 
                     x: { 
                         beginAtZero: true,
-                        ticks: { callback: v => '₹' + v.toLocaleString() },
-                        grid: { color: 'rgba(255,255,255,0.05)' }
+                        ticks: { callback: v => '₹' + v.toLocaleString(), color: themePalette.tickColor },
+                        grid: { color: themePalette.gridColor }
                     }
                 },
                 plugins: { 
@@ -352,10 +226,7 @@ async function loadCharts() {
             options: {
                 responsive: true,
                 scales: {
-                    y: { 
-                        beginAtZero: true,
-                        ticks: { callback: v => '₹' + v.toLocaleString() }
-                    }
+                    y: getCurrencyAxisOptions(themePalette)
                 },
                 plugins: {
                     legend: { display: false },
@@ -405,9 +276,8 @@ async function loadCharts() {
                 responsive: true,
                 scales: {
                     y: {
-                        beginAtZero: true,
-                        ticks: { stepSize: 1 },
-                        grid: { color: 'rgba(255,255,255,0.05)' }
+                        ...getCurrencyAxisOptions(themePalette),
+                        ticks: { stepSize: 1, color: themePalette.tickColor }
                     }
                 },
                 plugins: {
@@ -456,6 +326,7 @@ function loadTrendInsights(trendData) {
 }
 
 function renderCategoryPerformanceChart(trendData) {
+    const themePalette = getThemePalette();
     const growthRows = (trendData.category_growth || []).slice(0, 8);
     const labels = growthRows.map(row => row.category.charAt(0).toUpperCase() + row.category.slice(1));
     const growthValues = growthRows.map(row => row.growth_rate || 0);
@@ -476,10 +347,7 @@ function renderCategoryPerformanceChart(trendData) {
         options: {
             responsive: true,
             scales: {
-                y: {
-                    ticks: { callback: value => `${value}%` },
-                    grid: { color: 'rgba(255,255,255,0.05)' }
-                }
+                y: getPercentAxisOptions(themePalette)
             },
             plugins: {
                 legend: { display: false },
@@ -507,6 +375,7 @@ function renderCategoryPerformanceChart(trendData) {
 }
 
 function renderCategoryDrilldownChart(category, trendData) {
+    const themePalette = getThemePalette();
     const months = trendData.months || [];
     const series = (trendData.category_series || {})[category] || [];
     const titleCategory = category.charAt(0).toUpperCase() + category.slice(1);
@@ -533,11 +402,7 @@ function renderCategoryDrilldownChart(category, trendData) {
         options: {
             responsive: true,
             scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: { callback: value => '₹' + Number(value).toLocaleString('en-IN') },
-                    grid: { color: 'rgba(255,255,255,0.05)' }
-                }
+                y: getCurrencyAxisOptions(themePalette)
             },
             plugins: {
                 legend: { display: false },
@@ -615,7 +480,7 @@ async function refreshBudgetPrediction() {
         btn.textContent = '⏳ Updating...';
         btn.disabled = true;
         
-        const res = await fetch('/api/retrain-budget');
+        await fetch('/api/retrain-budget');
         await loadBudgetPrediction();
         
         btn.textContent = '✅ Updated!';
@@ -633,6 +498,8 @@ async function refreshBudgetPrediction() {
     }
 }
 
-
-
-{% endblock %}
+loadCharts();
+setInterval(loadCharts, 30000);
+window.addEventListener('theme-changed', () => {
+    loadCharts();
+});
