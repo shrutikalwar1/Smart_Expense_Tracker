@@ -23,6 +23,8 @@ function getCurrencyAxisOptions(themePalette) {
 }
 
 function getPercentAxisOptions(themePalette) {
+
+    // Keep this theme-aware to avoid merge regressions to hardcoded grid/tick colors.
     return {
         ticks: {
             color: themePalette.tickColor,

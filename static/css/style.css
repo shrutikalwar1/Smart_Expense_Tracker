@@ -494,7 +494,10 @@ tr:last-child {
     border-radius: 50px;
     cursor: pointer;
     box-shadow: 0 8px 25px rgba(102,126,234,0.3);
+
     z-index: var(--theme-toggle-z);
+    z-index: var(--theme-toggle-z);
+
     transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
@@ -574,7 +577,11 @@ tr:last-child {
     }
 
     .theme-toggle {
+
         top: 76px;
+
+        top: 15px;
+
         right: 15px;
         padding: 8px 10px;
     }
