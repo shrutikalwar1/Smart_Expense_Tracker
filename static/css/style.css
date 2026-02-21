@@ -496,7 +496,6 @@ tr:last-child {
     box-shadow: 0 8px 25px rgba(102,126,234,0.3);
 
     z-index: var(--theme-toggle-z);
-    z-index: var(--theme-toggle-z);
 
     transition: all 0.3s ease;
     display: inline-flex;
@@ -577,6 +576,9 @@ tr:last-child {
     }
 
     .theme-toggle {
+
+        top: 76px;
+
 
         top: 76px;
 

@@ -31,15 +31,6 @@ if (toggleBtn) {
         emitThemeChanged(theme);
 
 
-        emitThemeChanged(theme);
-
-
-        emitThemeChanged(theme);
-
-        window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme } }));
-
-    });
-
     updateThemeToggle(currentTheme);
 }
 
@@ -48,6 +39,7 @@ if (toggleBtn) {
 emitThemeChanged(currentTheme);
 // Re-emit after DOM is ready so late listeners also sync with persisted theme.
 document.addEventListener('DOMContentLoaded', () => emitThemeChanged(currentTheme));
+
 
 
 

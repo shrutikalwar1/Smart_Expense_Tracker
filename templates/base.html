@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Expense Tracker - Modern Edition</title>
+    <script>
+        document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
