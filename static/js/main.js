@@ -8,6 +8,13 @@ const currentTheme = localStorage.getItem('theme') || 'light';
 
 document.documentElement.setAttribute('data-theme', currentTheme);
 
+
+function emitThemeChanged(theme) {
+    window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme } }));
+}
+
+=======
+
 function updateThemeToggle(theme) {
     if (!toggleBtn) return;
     if (toggleIcon) toggleIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
@@ -21,11 +28,19 @@ if (toggleBtn) {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
         updateThemeToggle(theme);
+
+        emitThemeChanged(theme);
+=======
         window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme } }));
+
     });
 
     updateThemeToggle(currentTheme);
 }
+
+// Ensure pages with earlier-loading scripts (like analytics charts)
+// re-render with the persisted theme as soon as main.js initializes.
+emitThemeChanged(currentTheme);
 
 // ==========================================
 // NAVIGATION ACTIVE STATE
