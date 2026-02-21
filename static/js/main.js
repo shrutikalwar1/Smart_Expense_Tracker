@@ -34,6 +34,8 @@ if (toggleBtn) {
 // Ensure pages with earlier-loading scripts (like analytics charts)
 // re-render with the persisted theme as soon as main.js initializes.
 emitThemeChanged(currentTheme);
+// Re-emit after DOM is ready so late listeners also sync with persisted theme.
+document.addEventListener('DOMContentLoaded', () => emitThemeChanged(currentTheme));
 
 // ==========================================
 // NAVIGATION ACTIVE STATE
