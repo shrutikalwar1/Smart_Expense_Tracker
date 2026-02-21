@@ -8,9 +8,12 @@ const currentTheme = localStorage.getItem('theme') || 'light';
 
 document.documentElement.setAttribute('data-theme', currentTheme);
 
+
 function emitThemeChanged(theme) {
     window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme } }));
 }
+
+=======
 
 function updateThemeToggle(theme) {
     if (!toggleBtn) return;
@@ -25,7 +28,11 @@ if (toggleBtn) {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
         updateThemeToggle(theme);
+
         emitThemeChanged(theme);
+=======
+        window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme } }));
+
     });
 
     updateThemeToggle(currentTheme);
