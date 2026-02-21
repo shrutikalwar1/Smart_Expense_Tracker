@@ -153,7 +153,496 @@
     <div id="budgetTotal" style="text-align: center; font-size: 32px; font-weight: 800; color: #e5e0d9; background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(240, 147, 251, 0.3) 100%); padding: 26px; border-radius: 12px; border: 1px solid rgba(102, 126, 234, 0.2);"></div>
 </div>
 
+
 <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+
+=======
+
+<script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+
+=======
+
+<script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+=======
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script>
+const chartInstances = {};
+let trendInsightsCache = null;
+
+async function loadCharts() {
+    try {
+        const [catRes, monthRes, datasetRes, trendRes] = await Promise.all([
+            fetch('/api/categories'),
+            fetch('/api/months'),
+            fetch('/api/dataset-stats'),
+            fetch('/api/trend-insights')
+        ]);
+        
+        const categories = await catRes.json();
+        const months = await monthRes.json();
+        const stats = await datasetRes.json();
+        trendInsightsCache = await trendRes.json();
+        
+        // Update stat cards
+        const totalAmount = Object.values(categories).reduce((a, b) => a + b, 0);
+        document.getElementById('totalExpenses').textContent = '₹' + totalAmount.toLocaleString('en-IN');
+        document.getElementById('totalTransactions').textContent = stats.user_transactions || 0;
+        
+        const topCat = Object.entries(categories).sort((a, b) => b[1] - a[1])[0];
+        document.getElementById('topCategory').textContent = topCat[0].charAt(0).toUpperCase() + topCat[0].slice(1);
+        
+        if (stats.user_transactions > 0) {
+            document.getElementById('avgTransaction').textContent = '₹' + (totalAmount / stats.user_transactions).toLocaleString('en-IN', {maximumFractionDigits: 0});
+        }
+        
+        // ===== CHART 1: ELEGANT DOUGHNUT CHART =====
+        if (chartInstances.categoryChart) chartInstances.categoryChart.destroy();
+        chartInstances.categoryChart = new Chart(document.getElementById('categoryChart'), {
+            type: 'doughnut',
+            data: {
+                labels: Object.keys(categories).map(c => c.charAt(0).toUpperCase() + c.slice(1)),
+                datasets: [{
+                    data: Object.values(categories),
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.9)',    // Blue
+                        'rgba(240, 147, 251, 0.9)',    // Pink
+                        'rgba(79, 172, 254, 0.9)',     // Cyan
+                        'rgba(250, 112, 154, 0.9)',    // Red
+                        'rgba(254, 225, 64, 0.9)',     // Yellow
+                        'rgba(76, 192, 192, 0.9)',     // Teal
+                        'rgba(255, 107, 107, 0.9)',    // Coral
+                        'rgba(156, 102, 255, 0.9)'     // Purple
+                    ],
+                    borderColor: 'transparent',
+                    borderWidth: 0,
+                    spacing: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { 
+                    legend: { 
+                        position: 'bottom',
+                        labels: { 
+                            font: { size: 12, weight: 600 },
+                            padding: 15,
+                            usePointStyle: true,
+                            pointStyle: 'circle'
+                        }
+                    },
+                    tooltip: { 
+                        callbacks: { 
+                            label: ctx => `₹${ctx.parsed.toLocaleString()} (${((ctx.parsed/totalAmount)*100).toFixed(1)}%)`
+                        },
+                        padding: 12,
+                        titleFont: { size: 13, weight: 'bold' }
+                    }
+                },
+                animation: { duration: 2000, easing: 'easeOutQuart' }
+            }
+        });
+
+        // ===== CHART 2: SMOOTH AREA CHART FOR TRENDS =====
+        if (chartInstances.monthChart) chartInstances.monthChart.destroy();
+        chartInstances.monthChart = new Chart(document.getElementById('monthChart'), {
+            type: 'line',
+            data: {
+                labels: Object.keys(months),
+                datasets: [{
+                    label: 'Monthly Spending',
+                    data: Object.values(months),
+                    backgroundColor: 'rgba(102, 126, 234, 0.15)',
+                    borderColor: 'rgba(102, 126, 234, 1)',
+                    pointBackgroundColor: 'rgba(102, 126, 234, 1)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    fill: true,
+                    tension: 0.4,
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: { 
+                    y: { 
+                        beginAtZero: true,
+                        grid: { color: 'rgba(255,255,255,0.05)', drawBorder: false },
+                        ticks: { callback: v => '₹' + v.toLocaleString() }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                },
+                plugins: { 
+                    legend: { display: true, labels: { font: { size: 12, weight: 600 } } },
+                    tooltip: { 
+                        backgroundColor: 'rgba(0,0,0,0.8)',
+                        padding: 12,
+                        callbacks: { label: ctx => `₹${ctx.parsed.y.toLocaleString()}` }
+                    }
+                },
+                animation: { duration: 2000, easing: 'easeOutQuart' }
+            }
+        });
+        
+        // ===== CHART 3: GRADIENT BAR CHART FOR TOP CATEGORIES =====
+        const topCats = Object.entries(categories)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5);
+        
+        if (chartInstances.topCategoriesChart) chartInstances.topCategoriesChart.destroy();
+        chartInstances.topCategoriesChart = new Chart(document.getElementById('topCategoriesChart'), {
+            type: 'bar',
+            data: {
+                labels: topCats.map(c => c[0].charAt(0).toUpperCase() + c[0].slice(1)),
+                datasets: [{
+                    label: 'Amount (₹)',
+                    data: topCats.map(c => c[1]),
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.9)',
+                        'rgba(240, 147, 251, 0.9)',
+                        'rgba(79, 172, 254, 0.9)',
+                        'rgba(250, 112, 154, 0.9)',
+                        'rgba(254, 225, 64, 0.9)'
+                    ],
+                    borderRadius: 12,
+                    borderSkipped: false,
+                    borderColor: 'rgba(255,255,255,0.2)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                scales: { 
+                    x: { 
+                        beginAtZero: true,
+                        ticks: { callback: v => '₹' + v.toLocaleString() },
+                        grid: { color: 'rgba(255,255,255,0.05)' }
+                    }
+                },
+                plugins: { 
+                    legend: { display: false },
+                    tooltip: { 
+                        callbacks: { label: ctx => `₹${ctx.parsed.x.toLocaleString()}` },
+                        padding: 12
+                    }
+                }
+            }
+        });
+        
+
+        // ===== CHART 5: ELEGANT LINE CHART FOR AVERAGES =====
+        const dailyAvg = Math.round(totalAmount / 30);
+        const weeklyAvg = Math.round(totalAmount / 4.3);
+        
+        if (chartInstances.dailyAverageChart) chartInstances.dailyAverageChart.destroy();
+        chartInstances.dailyAverageChart = new Chart(document.getElementById('dailyAverageChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Daily', 'Weekly', 'Monthly'],
+                datasets: [{
+                    label: 'Average Spending',
+                    data: [dailyAvg, weeklyAvg, totalAmount],
+                    backgroundColor: [
+                        'rgba(79, 172, 254, 0.9)',
+                        'rgba(102, 126, 234, 0.9)',
+                        'rgba(240, 147, 251, 0.9)'
+                    ],
+                    borderRadius: 12,
+                    borderSkipped: false,
+                    borderColor: 'rgba(255,255,255,0.2)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { 
+                        beginAtZero: true,
+                        ticks: { callback: v => '₹' + v.toLocaleString() }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: { label: ctx => `₹${ctx.parsed.y.toLocaleString()}` }
+                    }
+                }
+            }
+        });
+        
+        // ===== CHART 6: PROFESSIONAL SPENDING DISTRIBUTION HISTOGRAM =====
+        const ranges = {
+            '₹0-1K': 0,
+            '₹1K-5K': 0,
+            '₹5K-10K': 0,
+            '₹10K+': 0
+        };
+        
+        Object.values(categories).forEach(amount => {
+            if (amount <= 1000) ranges['₹0-1K']++;
+            else if (amount <= 5000) ranges['₹1K-5K']++;
+            else if (amount <= 10000) ranges['₹5K-10K']++;
+            else ranges['₹10K+']++;
+        });
+        
+        if (chartInstances.distributionChart) chartInstances.distributionChart.destroy();
+        chartInstances.distributionChart = new Chart(document.getElementById('distributionChart'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(ranges),
+                datasets: [{
+                    label: 'Number of Categories',
+                    data: Object.values(ranges),
+                    backgroundColor: [
+                        'rgba(79, 172, 254, 0.9)',
+                        'rgba(102, 126, 234, 0.9)',
+                        'rgba(240, 147, 251, 0.9)',
+                        'rgba(250, 112, 154, 0.9)'
+                    ],
+                    borderRadius: 12,
+                    borderSkipped: false,
+                    borderColor: 'rgba(255,255,255,0.2)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 },
+                        grid: { color: 'rgba(255,255,255,0.05)' }
+                    }
+                },
+                plugins: {
+                    legend: { display: true, labels: { font: { size: 12, weight: 600 } } },
+                    tooltip: { callbacks: { label: ctx => `${ctx.parsed.y} categories` } }
+                }
+            }
+        });
+        
+        loadTrendInsights(trendInsightsCache);
+
+        // Load budget prediction
+        await loadBudgetPrediction();
+        
+    } catch(e) {
+        console.error('Chart loading failed:', e);
+    }
+}
+
+
+
+function growthColor(value) {
+    return value >= 0 ? 'rgba(72, 187, 120, 0.95)' : 'rgba(245, 101, 101, 0.95)';
+}
+
+function formatGrowth(value) {
+    const sign = value > 0 ? '+' : '';
+    return `${sign}${value.toFixed(1)}%`;
+}
+
+function loadTrendInsights(trendData) {
+    if (!trendData) return;
+
+    const wow = trendData.wow || { current: 0, previous: 0, growth_rate: 0 };
+    const mom = trendData.mom || { current: 0, previous: 0, growth_rate: 0 };
+
+    document.getElementById('wowGrowth').textContent = formatGrowth(wow.growth_rate || 0);
+    document.getElementById('wowGrowth').style.color = (wow.growth_rate || 0) >= 0 ? '#48bb78' : '#f56565';
+    document.getElementById('wowDetail').textContent = `Current ₹${Math.round(wow.current || 0).toLocaleString('en-IN')} vs Previous ₹${Math.round(wow.previous || 0).toLocaleString('en-IN')}`;
+
+    document.getElementById('momGrowth').textContent = formatGrowth(mom.growth_rate || 0);
+    document.getElementById('momGrowth').style.color = (mom.growth_rate || 0) >= 0 ? '#48bb78' : '#f56565';
+    document.getElementById('momDetail').textContent = `Current ₹${Math.round(mom.current || 0).toLocaleString('en-IN')} vs Previous ₹${Math.round(mom.previous || 0).toLocaleString('en-IN')}`;
+
+    renderCategoryPerformanceChart(trendData);
+}
+
+function renderCategoryPerformanceChart(trendData) {
+    const growthRows = (trendData.category_growth || []).slice(0, 8);
+    const labels = growthRows.map(row => row.category.charAt(0).toUpperCase() + row.category.slice(1));
+    const growthValues = growthRows.map(row => row.growth_rate || 0);
+
+    if (chartInstances.categoryPerformanceChart) chartInstances.categoryPerformanceChart.destroy();
+    chartInstances.categoryPerformanceChart = new Chart(document.getElementById('categoryPerformanceChart'), {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [{
+                label: 'MoM Growth %',
+                data: growthValues,
+                backgroundColor: growthValues.map(growthColor),
+                borderRadius: 10,
+                borderSkipped: false
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    ticks: { callback: value => `${value}%` },
+                    grid: { color: 'rgba(255,255,255,0.05)' }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: ctx => {
+                            const row = growthRows[ctx.dataIndex];
+                            return `${formatGrowth(ctx.parsed.y)} | ₹${Math.round(row.current).toLocaleString('en-IN')} vs ₹${Math.round(row.previous).toLocaleString('en-IN')}`;
+                        }
+                    }
+                }
+            },
+            onClick: (_event, elements) => {
+                if (!elements.length) return;
+                const idx = elements[0].index;
+                const selectedCategory = growthRows[idx].category;
+                renderCategoryDrilldownChart(selectedCategory, trendData);
+            }
+        }
+    });
+
+    if (growthRows.length > 0) {
+        renderCategoryDrilldownChart(growthRows[0].category, trendData);
+    }
+}
+
+function renderCategoryDrilldownChart(category, trendData) {
+    const months = trendData.months || [];
+    const series = (trendData.category_series || {})[category] || [];
+    const titleCategory = category.charAt(0).toUpperCase() + category.slice(1);
+
+    document.getElementById('categoryDrillTitle').textContent = `${titleCategory} Trend Drilldown`;
+    document.getElementById('drilldownHelp').textContent = `Showing ${titleCategory} spend across recent months`;
+
+    if (chartInstances.categoryDrilldownChart) chartInstances.categoryDrilldownChart.destroy();
+    chartInstances.categoryDrilldownChart = new Chart(document.getElementById('categoryDrilldownChart'), {
+        type: 'line',
+        data: {
+            labels: months,
+            datasets: [{
+                label: `${titleCategory} spend`,
+                data: series,
+                borderColor: 'rgba(79, 172, 254, 1)',
+                backgroundColor: 'rgba(79, 172, 254, 0.2)',
+                tension: 0.35,
+                fill: true,
+                pointRadius: 4,
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { callback: value => '₹' + Number(value).toLocaleString('en-IN') },
+                    grid: { color: 'rgba(255,255,255,0.05)' }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    callbacks: {
+                        label: ctx => `₹${Math.round(ctx.parsed.y).toLocaleString('en-IN')}`
+                    }
+                }
+            }
+        }
+    });
+}
+
+async function loadBudgetPrediction() {
+    try {
+        const res = await fetch('/api/budget-forecast');
+        if (!res.ok) throw new Error('API Error');
+        
+        const data = await res.json();
+        
+        if (!data.predictions || Object.keys(data.predictions).length === 0) {
+            document.getElementById('budgetCards').innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #fff; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; font-size: 14px;">📊 Add some expenses to see predictions</div>';
+            document.getElementById('budgetTotal').innerHTML = '💰 No data yet';
+            document.getElementById('predictionInfo').innerHTML = '⏳ Waiting for expense data...';
+            return;
+        }
+        
+        let cards = '';
+        const categoryEmojis = {
+            'food': '🍔', 'transport': '🚗', 'shopping': '🛒', 
+            'entertainment': '🎬', 'bills': '💡', 'technology': '🖥️', 'other': '📋'
+        };
+        
+        const gradients = [
+            'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+            'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+            'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+            'linear-gradient(135deg, #30cfd0 0%, #330867 100%)',
+            'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)',
+            'linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%)',
+            'linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)'
+        ];
+        
+        let idx = 0;
+        for (const [cat, amount] of Object.entries(data.predictions)) {
+            cards += `
+                <div style="background: ${gradients[idx % gradients.length]}; padding: 20px; border-radius: 14px; color: white; box-shadow: 0 8px 24px rgba(0,0,0,0.2); text-align: center; transition: transform 0.3s, box-shadow 0.3s;" class="budget-card">
+                    <div style="font-size: 24px; margin-bottom: 8px;">${categoryEmojis[cat] || '📋'}</div>
+                    <div style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">₹${parseInt(amount).toLocaleString('en-IN')}</div>
+                    <div style="font-size: 12px; text-transform: capitalize; opacity: 0.9; font-weight: 600;">${cat}</div>
+                </div>
+            `;
+            idx++;
+        }
+        
+        document.getElementById('budgetCards').innerHTML = cards;
+        document.getElementById('budgetTotal').innerHTML = `💰 <span style="font-size: 28px;">₹${parseInt(data.total).toLocaleString('en-IN')}</span>`;
+        
+        const methodText = data.factors_used ? `✨ ML Analysis using ${data.factors_used.length} factors` : '✨ ML-Powered Prediction';
+        document.getElementById('predictionInfo').innerHTML = `${methodText} | <strong>${data.transactions_analyzed}</strong> transactions analyzed`;
+        
+    } catch(e) {
+        console.error('Budget prediction error:', e);
+        document.getElementById('predictionInfo').innerHTML = '⚠️ Failed to load predictions';
+        document.getElementById('budgetCards').innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #fff; padding: 20px; background: rgba(255,0,0,0.2); border-radius: 10px;">❌ Error loading predictions</div>';
+    }
+}
+
+async function refreshBudgetPrediction() {
+    const btn = document.getElementById('refreshBtn');
+    const originalText = btn.textContent;
+    
+    try {
+        btn.textContent = '⏳ Updating...';
+        btn.disabled = true;
+        
+        const res = await fetch('/api/retrain-budget');
+        await loadBudgetPrediction();
+        
+        btn.textContent = '✅ Updated!';
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }, 2000);
+        
+    } catch(e) {
+        btn.textContent = '❌ Error!';
+        setTimeout(() => {
+            btn.textContent = originalText;
+            btn.disabled = false;
+        }, 3000);
+    }
+}
+
+
+
 
 
 {% endblock %}
