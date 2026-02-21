@@ -23,7 +23,7 @@ function getCurrencyAxisOptions(themePalette) {
 }
 
 function getPercentAxisOptions(themePalette) {
-    return {
+
         ticks: {
             color: themePalette.tickColor,
             callback: value => `${value}%`

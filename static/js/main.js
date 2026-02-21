@@ -8,9 +8,11 @@ const currentTheme = localStorage.getItem('theme') || 'light';
 
 document.documentElement.setAttribute('data-theme', currentTheme);
 
+
 function emitThemeChanged(theme) {
     window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme } }));
 }
+
 
 function updateThemeToggle(theme) {
     if (!toggleBtn) return;
@@ -25,8 +27,9 @@ if (toggleBtn) {
         document.documentElement.setAttribute('data-theme', theme);
         localStorage.setItem('theme', theme);
         updateThemeToggle(theme);
+
         emitThemeChanged(theme);
-    });
+
 
     updateThemeToggle(currentTheme);
 }
@@ -36,6 +39,14 @@ if (toggleBtn) {
 emitThemeChanged(currentTheme);
 // Re-emit after DOM is ready so late listeners also sync with persisted theme.
 document.addEventListener('DOMContentLoaded', () => emitThemeChanged(currentTheme));
+
+
+
+
+// Re-emit after DOM is ready so late listeners also sync with persisted theme.
+document.addEventListener('DOMContentLoaded', () => emitThemeChanged(currentTheme));
+
+
 
 // ==========================================
 // NAVIGATION ACTIVE STATE
