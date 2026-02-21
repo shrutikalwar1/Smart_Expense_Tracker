@@ -2,19 +2,43 @@
 // THEME TOGGLE
 // ==========================================
 const toggleBtn = document.querySelector('.theme-toggle');
-const currentTheme = localStorage.getItem('theme') || 'light';
-document.documentElement.setAttribute('data-theme', currentTheme);
+const toggleIcon = document.querySelector('.theme-toggle__icon');
+const toggleText = document.querySelector('.theme-toggle__text');
+
+function getSavedTheme() {
+    return localStorage.getItem('theme') || 'light';
+}
+
+function emitThemeChanged(theme) {
+    window.dispatchEvent(new CustomEvent('theme-changed', { detail: { theme } }));
+}
+
+function updateThemeToggle(theme) {
+    if (!toggleBtn) return;
+    if (toggleIcon) toggleIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    if (toggleText) toggleText.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
+    toggleBtn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+}
+
+function applyTheme(theme, announce = true) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    updateThemeToggle(theme);
+    if (announce) emitThemeChanged(theme);
+}
+
+const currentTheme = getSavedTheme();
+applyTheme(currentTheme);
 
 if (toggleBtn) {
     toggleBtn.addEventListener('click', () => {
         const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        toggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        applyTheme(theme);
     });
-    
-    toggleBtn.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
 }
+
+// Re-emit after DOM is ready so late listeners also sync with persisted theme.
+document.addEventListener('DOMContentLoaded', () => emitThemeChanged(getSavedTheme()));
 
 // ==========================================
 // NAVIGATION ACTIVE STATE
