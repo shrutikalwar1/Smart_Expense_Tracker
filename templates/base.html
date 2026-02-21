@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <button class="theme-toggle">🌙</button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="theme-toggle__icon">🌙</span>
+        <span class="theme-toggle__text">Dark mode</span>
+    </button>
     
     <!-- Header Navigation -->
     <header class="app-header">
